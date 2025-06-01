@@ -29,22 +29,53 @@ func _ready():
 
 
 func _process(delta):
-	return
+	for i in range(max_players):
+		for action in actions:
+			var compound_action_name = (str(i)+action)
+			var tap_count =  actions[action]
+			var ev = InputEventAction.new()
+			# Set as ui_left, pressed.
+			ev.action = compound_action_name
+			ev.pressed = false
+			if detect_tap(compound_action_name, tap_count, delta):
+				ev.pressed = true
 
+			Input.parse_input_event(ev)
 
 
 func _unhandled_input(event):
-	if event is InputEventAction: return
 	if event is InputEventKey:
 		event.set_device(DEVICE_KEYBOARD_ID)
 
 	for i in range(max_players):
+		if event.device != i: continue
 		for action in actions:
 			var compound_action_name = (str(i)+action)
-			var ev = InputEventAction.new()
-
-			ev.action = compound_action_name
-			ev.pressed = false
+			var tap_count =  actions[action]
+			var state = tap_states[compound_action_name]
+			
 			if event.is_action_pressed(action):
-				ev.pressed = true
-			Input.parse_input_event(ev)
+				state.count += 1
+				state.timer = 0.0
+				state.resolved = false
+
+
+
+
+
+func detect_tap(action_name: String, required_taps: int, delta: float) -> bool:
+	var state = tap_states[action_name]
+	# Increment timer
+	state.timer += delta
+	# Handle tap
+	if state.count == required_taps and state.timer >= TAP_RESOLVE_DELAY and not state.resolved:
+		state.resolved = true
+		state.count = 0
+		state.timer = 0.0
+		return true
+	if state.timer > TAP_RESOLVE_DELAY:
+		state.count = 0
+		state.timer = 0.0
+		state.resolved = false
+		return false
+	return false
