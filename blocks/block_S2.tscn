@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbqj4gxqw31kk"]
+
+[ext_resource type="PackedScene" uid="uid://vqhhq72uu758" path="res://blocks/block_S1.tscn" id="1_vx5p5"]
+
+[node name="Block" instance=ExtResource("1_vx5p5")]
+
+[node name="CollisionShape2D2" parent="." index="1"]
+position = Vector2(-30, -15)
+
+[node name="CollisionShape2D4" parent="." index="3"]
+position = Vector2(30, 15)

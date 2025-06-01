@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn4jvgymhd2fy"]
+
+[ext_resource type="PackedScene" uid="uid://vqhhq72uu758" path="res://blocks/block_S1.tscn" id="1_gdknu"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_gdknu"]
+resource_local_to_scene = true
+size = Vector2(30, 10000)
+
+[node name="Block" instance=ExtResource("1_gdknu")]
+
+[node name="Trail" parent="." index="0"]
+mesh = SubResource("QuadMesh_gdknu")
+
+[node name="CollisionShape2D2" parent="." index="1"]
+position = Vector2(-30, 0)
+
+[node name="CollisionShape2D3" parent="." index="2"]
+position = Vector2(0, -30)
+
+[node name="CollisionShape2D4" parent="." index="3"]
+position = Vector2(30, 0)
+
+[node name="CollisionShape2D" parent="." index="4"]
+position = Vector2(0, 0)

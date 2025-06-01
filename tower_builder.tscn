@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://bgtt6psvobs7s"]
+
+[ext_resource type="Script" uid="uid://uyth7v848ih0" path="res://tower_builder.gd" id="1_6fbt4"]
+[ext_resource type="Texture2D" uid="uid://h2687wdrdaeb" path="res://Untitled.png" id="1_hdix6"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_oj04g"]
+size = Vector2(500, 1000)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_oj04g"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6fbt4"]
+distance = -500.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hdix6"]
+size = Vector2(500, 1000)
+
+[node name="tower_builder" type="Node2D"]
+script = ExtResource("1_6fbt4")
+fall_speed = 280
+
+[node name="Textures" type="Node2D" parent="."]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Textures"]
+mesh = SubResource("QuadMesh_oj04g")
+texture = ExtResource("1_hdix6")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="Textures"]
+position = Vector2(0, 476)
+scale = Vector2(1, 0.048)
+mesh = SubResource("QuadMesh_oj04g")
+texture = SubResource("PlaceholderTexture2D_oj04g")
+
+[node name="RigidTerrain" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="RigidTerrain"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidTerrain/StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_6fbt4")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_hdix6")
+
+[node name="Blocks" type="Node2D" parent="."]
+position = Vector2(0, -465)

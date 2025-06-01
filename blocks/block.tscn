@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://dvw0mdvtr5xbr"]
+
+[ext_resource type="Texture2D" uid="uid://bdck41ax1llii" path="res://icon.svg" id="1_im0tn"]
+[ext_resource type="Script" uid="uid://bqrh6sek5l776" path="res://blocks/block.gd" id="1_xfwl5"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xfwl5"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_xoxf0"]
+resource_local_to_scene = true
+size = Vector2(30, 10000)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xoxf0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dlkxs"]
+size = Vector2(30, 30)
+
+[sub_resource type="QuadMesh" id="QuadMesh_7uoja"]
+size = Vector2(30, 30)
+
+[node name="Block" type="RigidBody2D"]
+mass = 0.001
+physics_material_override = SubResource("PhysicsMaterial_xfwl5")
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 1
+linear_velocity = Vector2(0, 10)
+script = ExtResource("1_xfwl5")
+metadata/_edit_lock_ = true
+
+[node name="Trail" type="MeshInstance2D" parent="."]
+modulate = Color(1, 1, 1, 0.258824)
+show_behind_parent = true
+top_level = true
+z_index = -10
+z_as_relative = false
+mesh = SubResource("QuadMesh_xoxf0")
+texture = SubResource("PlaceholderTexture2D_xoxf0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dlkxs")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="CollisionShape2D"]
+mesh = SubResource("QuadMesh_7uoja")
+texture = ExtResource("1_im0tn")
+metadata/_edit_lock_ = true

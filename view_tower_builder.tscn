@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://dx66gtytendl0"]
+
+[ext_resource type="PackedScene" uid="uid://dkah6rykgvye0" path="res://viewport_tower_builder.tscn" id="1_dsvxy"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_dsvxy"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_dk36c"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_hm2mt"]
+viewport_path = NodePath("SubViewport")
+
+[node name="view_tower_builder" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+
+[node name="Viewport_Tower_Builder" parent="GridContainer" instance=ExtResource("1_dsvxy")]
+process_mode = 4
+layout_mode = 2
+texture = SubResource("ViewportTexture_dsvxy")
+
+[node name="Viewport_Tower_Builder2" parent="GridContainer" instance=ExtResource("1_dsvxy")]
+process_mode = 4
+layout_mode = 2
+texture = SubResource("ViewportTexture_dk36c")
+
+[node name="tower_builder" parent="GridContainer/Viewport_Tower_Builder2/SubViewport" index="0"]
+targetInput = 1
+
+[node name="Viewport_Tower_Builder3" parent="GridContainer" instance=ExtResource("1_dsvxy")]
+layout_mode = 2
+texture = SubResource("ViewportTexture_hm2mt")
+
+[node name="tower_builder" parent="GridContainer/Viewport_Tower_Builder3/SubViewport" index="0"]
+targetInput = 5
+
+[editable path="GridContainer/Viewport_Tower_Builder"]
+[editable path="GridContainer/Viewport_Tower_Builder2"]
+[editable path="GridContainer/Viewport_Tower_Builder3"]
