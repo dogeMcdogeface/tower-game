@@ -1,8 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://disoy7g5arptk"]
+[gd_scene load_steps=3 format=3 uid="uid://disoy7g5arptk"]
 
 [ext_resource type="PackedScene" uid="uid://cxy1m6233ucne" path="res://blocks/block_L1.tscn" id="1_ugc8l"]
 
+[sub_resource type="QuadMesh" id="QuadMesh_b6leo"]
+resource_local_to_scene = true
+size = Vector2(30, 10000)
+
 [node name="Block" instance=ExtResource("1_ugc8l")]
 
-[node name="CollisionShape2D4" parent="." index="3"]
-position = Vector2(30, 30)
+[node name="Trail" parent="." index="0"]
+mesh = SubResource("QuadMesh_b6leo")
+
+[node name="Collision_Block4" parent="." index="4"]
+position = Vector2(-30, -30)

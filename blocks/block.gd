@@ -11,16 +11,23 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if(!is_controlled):return
-	
-	var aabb = get_combined_aabb()
-	$Trail.mesh.size.x = aabb.size.x
-	$Trail.global_position = aabb.get_center()
+	if(is_controlled):
+
+		var aabb = get_combined_aabb()
+		$Trail.mesh.size.x = aabb.size.x
+		$Trail.global_position = aabb.get_center()
 
 
 	if get_colliding_bodies().size() > 0:
 		hasCollided = true
+		#print(get_colliding_bodies())
+		for collider in get_colliding_bodies():
+			if collider.has_meta("WorldBorder"):
+				die()
 	pass
+
+func die():
+	queue_free()
 
 
 func set_controlled(controlled:bool):
@@ -30,7 +37,7 @@ func set_controlled(controlled:bool):
 	if (is_controlled):
 		gravity_scale = 0
 	else:
-		gravity_scale = 1
+		gravity_scale = 0.5
 		set_axis_velocity(Vector2.ZERO)
 
 

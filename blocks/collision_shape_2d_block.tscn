@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbamyfakjx63b"]
+
+[ext_resource type="Shape2D" uid="uid://cwdeijbpd45if" path="res://blocks/shape_block1.tres" id="1_wcyly"]
+
+[node name="Collision_Block" type="CollisionShape2D"]
+shape = ExtResource("1_wcyly")

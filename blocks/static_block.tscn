@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://c56uiv3f0vbhs"]
+
+[ext_resource type="Texture2D" uid="uid://bdck41ax1llii" path="res://icon.svg" id="2_omd6i"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xfwl5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dlkxs"]
+size = Vector2(30, 30)
+
+[sub_resource type="QuadMesh" id="QuadMesh_7uoja"]
+size = Vector2(30, 30)
+
+[node name="Block" type="StaticBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_xfwl5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dlkxs")
+metadata/_edit_lock_ = true
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="CollisionShape2D"]
+mesh = SubResource("QuadMesh_7uoja")
+texture = ExtResource("2_omd6i")
+metadata/_edit_lock_ = true

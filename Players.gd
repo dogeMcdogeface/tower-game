@@ -39,12 +39,13 @@ func _unhandled_input(event):
 		event.set_device(DEVICE_KEYBOARD_ID)
 
 	for i in range(max_players):
+		if event.device != i: continue
 		for action in actions:
 			var compound_action_name = (str(i)+action)
 			var ev = InputEventAction.new()
 
 			ev.action = compound_action_name
 			ev.pressed = false
-			if event.is_action_pressed(action):
+			if event.is_action_pressed(action, false, true):
 				ev.pressed = true
 			Input.parse_input_event(ev)

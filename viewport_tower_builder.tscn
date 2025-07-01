@@ -13,6 +13,7 @@ expand_mode = 4
 stretch_mode = 5
 
 [node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
 transparent_bg = true
 size = Vector2i(500, 1000)
 

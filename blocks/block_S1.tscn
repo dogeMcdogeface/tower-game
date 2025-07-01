@@ -1,46 +1,44 @@
-[gd_scene load_steps=5 format=3 uid="uid://vqhhq72uu758"]
+[gd_scene load_steps=6 format=3 uid="uid://vqhhq72uu758"]
 
 [ext_resource type="PackedScene" uid="uid://dvw0mdvtr5xbr" path="res://blocks/block.tscn" id="1_8obtt"]
+[ext_resource type="PackedScene" uid="uid://cbamyfakjx63b" path="res://blocks/collision_shape_2d_block.tscn" id="2_feco0"]
 [ext_resource type="Texture2D" uid="uid://bdck41ax1llii" path="res://icon.svg" id="2_ikxu0"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dlkxs"]
-size = Vector2(30, 30)
+[sub_resource type="QuadMesh" id="QuadMesh_j8hfj"]
+resource_local_to_scene = true
+size = Vector2(30, 10000)
 
 [sub_resource type="QuadMesh" id="QuadMesh_7uoja"]
 size = Vector2(30, 30)
 
 [node name="Block" instance=ExtResource("1_8obtt")]
 
-[node name="CollisionShape2D" parent="." index="0"]
+[node name="Trail" parent="." index="0"]
+mesh = SubResource("QuadMesh_j8hfj")
+
+[node name="Collision_Block" parent="." index="1"]
 position = Vector2(0, 15)
-shape = SubResource("RectangleShape2D_dlkxs")
 
-[node name="MeshInstance2D" parent="CollisionShape2D" index="0"]
-mesh = SubResource("QuadMesh_7uoja")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="1"]
-position = Vector2(-30, 15)
-shape = SubResource("RectangleShape2D_dlkxs")
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="CollisionShape2D2" index="0"]
-mesh = SubResource("QuadMesh_7uoja")
-texture = ExtResource("2_ikxu0")
-metadata/_edit_lock_ = true
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="." index="2"]
+[node name="Collision_Block2" parent="." index="2" instance=ExtResource("2_feco0")]
 position = Vector2(0, -15)
-shape = SubResource("RectangleShape2D_dlkxs")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="CollisionShape2D3" index="0"]
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Collision_Block2" index="0"]
 mesh = SubResource("QuadMesh_7uoja")
 texture = ExtResource("2_ikxu0")
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="." index="3"]
+[node name="Collision_Block3" parent="." index="3" instance=ExtResource("2_feco0")]
 position = Vector2(30, -15)
-shape = SubResource("RectangleShape2D_dlkxs")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="CollisionShape2D4" index="0"]
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Collision_Block3" index="0"]
+mesh = SubResource("QuadMesh_7uoja")
+texture = ExtResource("2_ikxu0")
+metadata/_edit_lock_ = true
+
+[node name="Collision_Block4" parent="." index="4" instance=ExtResource("2_feco0")]
+position = Vector2(-30, 15)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Collision_Block4" index="0"]
 mesh = SubResource("QuadMesh_7uoja")
 texture = ExtResource("2_ikxu0")
 metadata/_edit_lock_ = true

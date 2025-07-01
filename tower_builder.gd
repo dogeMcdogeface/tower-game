@@ -19,8 +19,9 @@ func _process(delta: float) -> void:
 	
 	if(active_block == null):
 		var block = spawn_block()
-		block.set_controlled(true)
-		active_block = block
+		if(block):
+			block.set_controlled(true)
+			active_block = block
 	elif active_block.hasCollided:
 		active_block.set_controlled(false)
 		active_block = null
@@ -47,15 +48,14 @@ func _physics_process(delta):
 	if active_block == null:
 		return
 
-	# Constant falling
-	active_block.set_axis_velocity(Vector2.DOWN * fall_speed)
+	var final_fall_speed = fall_speed
 
 	# Define movement map: action name -> pixel offset
 	var move_actions := {
-		"player_left": -GameDirector.block_size,
-		"player_left_dash": -GameDirector.block_size * 2,
-		"player_right": GameDirector.block_size,
-		"player_right_dash": GameDirector.block_size * 2,
+		"player_left": -GameDirector.block_size * 0.5,
+		"player_left_dash": -GameDirector.block_size ,
+		"player_right": GameDirector.block_size* 0.5,
+		"player_right_dash": GameDirector.block_size,
 	}
 
 	for action in move_actions.keys():
@@ -71,7 +71,6 @@ func _physics_process(delta):
 				new_transform
 			)
 			print(targetInput, action)
-
 
 
 # Handle rotation
@@ -100,14 +99,19 @@ func _physics_process(delta):
 		print(targetInput, "player_rotate")
 
 
-	if target_is_action_just_pressed("player_down"):
+	if target_is_action_pressed("player_down"):
+		final_fall_speed = fall_speed * 2
 		print(targetInput, "player_down")
 	if target_is_action_just_pressed("player_action1"):
 		print(targetInput, "player_action1")
 	if target_is_action_just_pressed("player_action2"):
 		print(targetInput, "player_action2")
 
-	
+	# Constant falling
+	active_block.set_axis_velocity(Vector2.DOWN * final_fall_speed )
+
 
 func target_is_action_just_pressed(action: String) -> bool:
 	return Input.is_action_just_pressed(str(targetInput)+action)
+func target_is_action_pressed(action: String) -> bool:
+	return Input.is_action_pressed(str(targetInput)+action)
