@@ -24,19 +24,23 @@ func _process(delta: float) -> void:
 		for collider in get_colliding_bodies():
 			if collider.has_meta("WorldBorder"):
 				die()
+
 	pass
 
 func die():
 	queue_free()
 
-
+var real_mass = 0
 func set_controlled(controlled:bool):
 	is_controlled = controlled
 	$Trail.visible = is_controlled
 	
 	if (is_controlled):
 		gravity_scale = 0
+		real_mass = mass
+		mass = 0.0001
 	else:
+		mass = real_mass
 		gravity_scale = 0.5
 		set_axis_velocity(Vector2.ZERO)
 

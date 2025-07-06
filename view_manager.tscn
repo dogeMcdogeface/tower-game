@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://cilcg2jxe23wn"]
+
+[ext_resource type="Script" uid="uid://bv1co4bayalau" path="res://view_manager.gd" id="1_oks7v"]
+[ext_resource type="PackedScene" uid="uid://dx66gtytendl0" path="res://view_tower_builder.tscn" id="2_bvfnh"]
+[ext_resource type="PackedScene" uid="uid://u13h80w1femx" path="res://views/menus/menu_main.tscn" id="3_bvfnh"]
+[ext_resource type="PackedScene" uid="uid://dwxf3aa4gdtyk" path="res://views/menus/menu_test_controllers.tscn" id="4_cyya4"]
+[ext_resource type="PackedScene" uid="uid://cy6j4hvbb7810" path="res://grid_container_player_icons.tscn" id="5_850fj"]
+
+[node name="view_manager" type="Node"]
+script = ExtResource("1_oks7v")
+
+[node name="views" type="Node" parent="."]
+
+[node name="view_tower_builder" parent="views" instance=ExtResource("2_bvfnh")]
+process_mode = 4
+visible = false
+metadata/_edit_lock_ = true
+
+[node name="menu_main" parent="views" node_paths=PackedStringArray("ui_manager") instance=ExtResource("3_bvfnh")]
+visible = false
+ui_manager = NodePath("../..")
+
+[node name="menu_settings" type="Control" parent="views"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_lock_ = true
+
+[node name="menu_test_controllers" parent="views" instance=ExtResource("4_cyya4")]
+metadata/_edit_lock_ = true
+
+[node name="overlays" type="Node" parent="."]
+
+[node name="GridContainer_player_icons" parent="overlays" instance=ExtResource("5_850fj")]

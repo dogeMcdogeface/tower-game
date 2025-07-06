@@ -1,0 +1,108 @@
+[gd_scene load_steps=5 format=3 uid="uid://dab6j68rhrys7"]
+
+[ext_resource type="Texture2D" uid="uid://bdck41ax1llii" path="res://icon.svg" id="1_bft0e"]
+[ext_resource type="Script" uid="uid://bgdn0qmji7yhy" path="res://player_icon_container.gd" id="1_on4d5"]
+
+[sub_resource type="Gradient" id="Gradient_on4d5"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.364706)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8bpbv"]
+gradient = SubResource("Gradient_on4d5")
+fill = 2
+fill_from = Vector2(0.65812, 0.901709)
+fill_to = Vector2(0.0940171, 0.465812)
+
+[node name="PlayerIconContainer" type="MarginContainer"]
+size_flags_horizontal = 6
+script = ExtResource("1_on4d5")
+
+[node name="background" type="NinePatchRect" parent="."]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_8bpbv")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Label_name" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "PLAYER NAME"
+
+[node name="Label_controller" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "CONTROLLER"
+
+[node name="PlayerIcon" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_bft0e")
+expand_mode = 3
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer"]
+layout_mode = 2
+columns = 5
+
+[node name="Button1" type="Button" parent="HBoxContainer/GridContainer"]
+layout_mode = 2
+focus_mode = 0
+toggle_mode = true
+button_mask = 0
+text = "A"
+
+[node name="Button2" type="Button" parent="HBoxContainer/GridContainer"]
+layout_mode = 2
+focus_mode = 0
+toggle_mode = true
+button_mask = 0
+text = "A"
+
+[node name="Button3" type="Button" parent="HBoxContainer/GridContainer"]
+layout_mode = 2
+focus_mode = 0
+toggle_mode = true
+button_mask = 0
+text = "A"
+
+[node name="Spacer1" type="Control" parent="HBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(12.95, 0)
+layout_mode = 2
+
+[node name="Button4" type="Button" parent="HBoxContainer/GridContainer"]
+layout_mode = 2
+focus_mode = 0
+toggle_mode = true
+button_mask = 0
+text = "A"
+
+[node name="Button5" type="Button" parent="HBoxContainer/GridContainer"]
+layout_mode = 2
+focus_mode = 0
+toggle_mode = true
+button_mask = 0
+text = "A"
+
+[node name="Button6" type="Button" parent="HBoxContainer/GridContainer"]
+layout_mode = 2
+focus_mode = 0
+toggle_mode = true
+button_mask = 0
+text = "A"
+
+[node name="Button7" type="Button" parent="HBoxContainer/GridContainer"]
+layout_mode = 2
+focus_mode = 0
+toggle_mode = true
+button_mask = 0
+text = "A"
+
+[node name="Spacer2" type="Control" parent="HBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(12.95, 0)
+layout_mode = 2
+
+[node name="Button8" type="Button" parent="HBoxContainer/GridContainer"]
+layout_mode = 2
+focus_mode = 0
+toggle_mode = true
+button_mask = 0
+text = "A"

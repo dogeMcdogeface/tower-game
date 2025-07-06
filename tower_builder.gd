@@ -59,7 +59,7 @@ func _physics_process(delta):
 	}
 
 	for action in move_actions.keys():
-		if target_is_action_just_pressed(action):
+		if PlayerInput.target_is_action_just_pressed(action, targetInput):
 			var current_transform = PhysicsServer2D.body_get_state(
 				active_block.get_rid(),
 				PhysicsServer2D.BODY_STATE_TRANSFORM
@@ -70,11 +70,11 @@ func _physics_process(delta):
 				PhysicsServer2D.BODY_STATE_TRANSFORM,
 				new_transform
 			)
-			print(targetInput, action)
+			#print(targetInput, action)
 
 
 # Handle rotation
-	if target_is_action_just_pressed("player_rotate"):
+	if PlayerInput.target_is_action_just_pressed("player_rotate", targetInput):
 		var current_transform = PhysicsServer2D.body_get_state(
 			active_block.get_rid(),
 			PhysicsServer2D.BODY_STATE_TRANSFORM
@@ -97,21 +97,13 @@ func _physics_process(delta):
 			rotated_transform
 		)
 		print(targetInput, "player_rotate")
-
-
-	if target_is_action_pressed("player_down"):
+	if PlayerInput.target_is_action_pressed("player_down", targetInput):
 		final_fall_speed = fall_speed * 2
 		print(targetInput, "player_down")
-	if target_is_action_just_pressed("player_action1"):
+	if PlayerInput.target_is_action_just_pressed("player_action1", targetInput):
 		print(targetInput, "player_action1")
-	if target_is_action_just_pressed("player_action2"):
+	if PlayerInput.target_is_action_just_pressed("player_action2", targetInput):
 		print(targetInput, "player_action2")
 
 	# Constant falling
 	active_block.set_axis_velocity(Vector2.DOWN * final_fall_speed )
-
-
-func target_is_action_just_pressed(action: String) -> bool:
-	return Input.is_action_just_pressed(str(targetInput)+action)
-func target_is_action_pressed(action: String) -> bool:
-	return Input.is_action_pressed(str(targetInput)+action)

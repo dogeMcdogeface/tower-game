@@ -1,5 +1,6 @@
-extends Node
+class_name Menu extends Control
 
+@export var ui_manager:ui_manager
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

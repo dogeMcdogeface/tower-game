@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Player" load_steps=2 format=3 uid="uid://ctto5q8cwfjaw"]
+
+[ext_resource type="Script" uid="uid://b67kt2ivt170c" path="res://Player.gd" id="1_vo43o"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_vo43o")
+name = ""

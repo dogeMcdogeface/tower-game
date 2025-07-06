@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=3 uid="uid://u13h80w1femx"]
+
+[ext_resource type="Script" uid="uid://bc663kacqw1la" path="res://views/menus/menu_main.gd" id="1_dn87b"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jckav"]
+size = Vector2(600, 600)
+
+[node name="menu_main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dn87b")
+metadata/_edit_lock_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "ASS"
+
+[node name="Button_play" type="Button" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "PLAY"
+
+[node name="Button_settings" type="Button" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "SETTINGS"
+
+[node name="Button_test_controllers" type="Button" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "TEST CONTROLLERS"
+
+[node name="Button_quit" type="Button" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "EXIT"
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("PlaceholderTexture2D_jckav")
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Button_play" to="." method="_on_button_play_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Button_settings" to="." method="_on_button_settings_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Button_test_controllers" to="." method="_on_button_test_controllers_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/Button_quit" to="." method="_on_button_quit_pressed"]

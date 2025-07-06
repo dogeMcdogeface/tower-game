@@ -1,6 +1,6 @@
 extends Node
 
-var max_players = 6
+const MAX_DEVICES = 6
 var DEVICE_KEYBOARD_ID
 
 
@@ -19,10 +19,9 @@ var actions = {
 }
 
 func _ready():
-
-	DEVICE_KEYBOARD_ID = max_players-1
+	DEVICE_KEYBOARD_ID = MAX_DEVICES-1
 	for action in actions:
-		for i in range(max_players):
+		for i in range(MAX_DEVICES):
 			InputMap.add_action(str(i)+action)
 			tap_states[str(i) + action] = { "count": 0, "timer": 0.0, "resolved": false }
 
@@ -38,7 +37,7 @@ func _unhandled_input(event):
 	if event is InputEventKey:
 		event.set_device(DEVICE_KEYBOARD_ID)
 
-	for i in range(max_players):
+	for i in range(MAX_DEVICES):
 		if event.device != i: continue
 		for action in actions:
 			var compound_action_name = (str(i)+action)
@@ -49,3 +48,10 @@ func _unhandled_input(event):
 			if event.is_action_pressed(action, false, true):
 				ev.pressed = true
 			Input.parse_input_event(ev)
+
+
+
+func target_is_action_just_pressed(action: String, targetInput:int) -> bool:
+	return Input.is_action_just_pressed(str(targetInput)+action)
+func target_is_action_pressed(action: String, targetInput:int) -> bool:
+	return Input.is_action_pressed(str(targetInput)+action)
