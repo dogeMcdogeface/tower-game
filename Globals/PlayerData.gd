@@ -39,3 +39,25 @@ func remove_player(targetInput):
 
 func get_active_players_num() -> int:
 	return players.size()
+
+
+
+enum  {
+	NONE_READY,
+	SOME_READY,
+	ALL_READY
+}
+
+# Function to check ready status
+func get_ready_status() -> int:
+	var ready_count := 0
+	for player in players.values():
+		if player.ready:
+			ready_count += 1
+
+	if ready_count == 0:
+		return NONE_READY
+	elif ready_count >=  get_active_players_num():
+		return ALL_READY
+	else:
+		return SOME_READY

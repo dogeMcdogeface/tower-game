@@ -18,19 +18,20 @@ const terms = [
 	"Intercourse", "Funny", "Gamer", "Loser", "Awesome", "Sneaky", "Fluffy", "Daring", "Epic", "Ninja", "Cheesy", "Joker", "Cool", "Zombie", "Silly"
 ]
 
-# Static set to keep track of assigned color indexes
-static var assigned_color_indices := {}
+var ready = false
 
 var targetInput: int
 var titleIndex = 0
 var termIndex = 0
-
 var _colorIndex: int = -1  # Internal backing variable for colorIndex
+
 
 var name: String:
 	get:
 		return "%s %s" % [titles[titleIndex % titles.size()], terms[termIndex % terms.size()]]
 
+# Static set to keep track of assigned color indexes
+static var assigned_color_indices := {}
 var colorIndex: int:
 	get:
 		return _colorIndex

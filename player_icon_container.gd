@@ -27,11 +27,21 @@ func _process(delta: float) -> void:
 		$background.modulate= 0
 		$HBoxContainer/VBoxContainer/Label_name.text = ""
 		$HBoxContainer/VBoxContainer/Label_controller.text = ""
+		$HBoxContainer/Icon_ready_no.hide()
+		$HBoxContainer/Icon_ready_yes.hide()
 		return
 	
 	var targetInput = assignedPlayer.targetInput
 	modulate = Color.WHITE
-	$background.modulate = assignedPlayer.color
+	if assignedPlayer.ready:
+		$background.modulate = assignedPlayer.color
+		$HBoxContainer/Icon_ready_no.hide()
+		$HBoxContainer/Icon_ready_yes.show()
+	else:
+		$background.modulate = 0
+		$HBoxContainer/Icon_ready_no.show()
+		$HBoxContainer/Icon_ready_yes.hide()
+		
 	$HBoxContainer/VBoxContainer/Label_name.text = assignedPlayer.name
 	
 	if (targetInput == PlayerInput.DEVICE_KEYBOARD_ID):
