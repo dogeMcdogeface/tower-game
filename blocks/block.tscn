@@ -381,7 +381,7 @@ terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
 sources/2 = SubResource("TileSetAtlasSource_7tu1r")
 
 [node name="Block" type="RigidBody2D"]
-mass = 10.0
+mass = 40.0
 physics_material_override = SubResource("PhysicsMaterial_xfwl5")
 gravity_scale = 0.0
 contact_monitor = true

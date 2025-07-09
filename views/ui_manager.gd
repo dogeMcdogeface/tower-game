@@ -7,7 +7,10 @@ class_name ui_manager extends Node
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print("Program Starting")
-	ui_show_main()
+	
+	GameDirector._on_game_finished.connect(_on_game_finished)
+	
+	fsm_set_state("main")
 	pass # Replace with function body.
 
 
@@ -33,33 +36,70 @@ func show_view(child):
 
 
 #################################################################
+## State Machine
 
-func ui_show_main() -> void:
-	print("game settings")
-	var view = $views/menu_main
-	show_view(view)
+var state
+@onready var states = {
+	"main": {
+		"scene": $views/menu_main,
+		"trans":{
+			"_on_button_play_pressed": "check_players_to_play",
+			"_on_button_settings_pressed": "settings",
+			"_on_button_test_controllers_pressed": "test_controller",
+		}
+	},
+	"test_controller": {
+		"scene": $views/menu_test_controllers,
+		"trans":{
+			"_close_with_players": "main",
+			"_close_without_players": "main",
+		}
+	},
+	"check_players_to_play": {
+		"scene": $views/menu_test_controllers,
+		"trans":{
+			"_close_with_players": "tower_builder",
+			"_close_without_players": "main",
+		}
+	},
+	"tower_builder": {
+		"scene": $views/view_tower_builder,
+		"trans":{
+			"_close": "main",
+		}
+	},
+}
 
-func ui_show_game_setup() -> void:
-	print("game begin")
-	if(PlayerData.get_active_players_num() > 0):
-		var view = $views/view_tower_builder
-		show_view(view)
-	else:
-		ui_show_testControllers()
+func fsm_apply_transition(trans:String):
+	print("current state ", state, " Transition ", trans)
+	if state not in states:
+		print("Unknown state...")
+		print("Resetting")
+		if not fsm_set_state("main"):
+			push_error("Fatal error: Can't find fallback UI state")
+			#get_tree().quit(1)
+		return false
+	
+	if trans not in states[state].trans:
+		print("Unknown Transition...")
+		return false
+	
+	fsm_set_state(states[state].trans[trans])
 
+		
+		
+func fsm_set_state(newState):
+	print("Changing to state ", newState)
+	if newState not in states:
+		print("Unknown state...")
+		return false
+	state = newState
+	show_view(states[state].scene)
+#################################################################
 
-func ui_show_settings() -> void:
-	print("game settings")
-	var view = $views/menu_settings
-	show_view(view)
-
-
-
-func ui_show_testControllers() -> void:
-	print("test controllers")
-	var view = $views/menu_test_controllers
-	show_view(view)
-
+func _on_game_finished():
+	fsm_apply_transition("_close")
+	print("GAME FINISHEIRHIEHRI")
 
 func exit_game() -> void:
 	print("exit game")

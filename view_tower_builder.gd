@@ -1,4 +1,4 @@
-extends Control
+extends Menu
 
 
 # Called when the node enters the scene tree for the first time.
@@ -24,7 +24,6 @@ func _player_data_updated():
 		print("No players??")
 	else:
 		show_player_viewport(playerNum)
-
 
 func show_player_viewport(num):
 	$GridContainer.columns = num

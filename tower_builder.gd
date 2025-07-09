@@ -2,7 +2,6 @@ extends Node2D
 
 var _assignedPlayer: Player
 var targetInput = 0
-
 var assignedPlayer: Player:
 	set(value):
 		_assignedPlayer = value
@@ -30,6 +29,7 @@ func _process(delta: float) -> void:
 	
 	if(!game_active):return
 	
+	assignedPlayer.game_in_progress = true
 	if(active_block == null):
 		var block = spawn_block()
 		if(block):
@@ -47,7 +47,7 @@ func _process(delta: float) -> void:
 var block_index = 0
 func spawn_block():
 	if(block_index >= GameDirector.current_block_list_length):
-		game_active = false
+		stop_game()
 		return
 	var block:Block = (GameDirector.current_block_list[block_index]).instantiate()
 	block.assignedPlayer = assignedPlayer
@@ -56,6 +56,11 @@ func spawn_block():
 	return block
 
 
+
+func stop_game():
+	game_active = false
+	assignedPlayer.game_in_progress = false
+	GameDirector._on_player_game_finished(assignedPlayer)
 
 
 func _physics_process(delta):

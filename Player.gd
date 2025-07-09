@@ -19,6 +19,8 @@ const terms = [
 ]
 
 var ready = false
+var game_in_progress = false
+
 
 var targetInput: int
 var titleIndex = 0

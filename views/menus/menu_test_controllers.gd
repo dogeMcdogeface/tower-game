@@ -34,14 +34,14 @@ func handlePlayers():
 			elif PlayerData.get_ready_status() != PlayerData.ALL_READY:
 				PlayerData.players[targetInput].ready = true
 			else :
-				ui_manager.ui_show_main()
+				ui_manager.fsm_apply_transition("_close_with_players")
 		if PlayerInput.target_is_action_just_pressed("player_action2", targetInput):
 			if PlayerData.players.has(targetInput) and PlayerData.players[targetInput].ready:
 				PlayerData.players[targetInput].ready = false
 			elif PlayerData.get_active_players_num() != 0:
 				PlayerData.remove_player(targetInput)
 			else:
-				ui_manager.ui_show_main()
+				ui_manager.fsm_apply_transition("_close_without_players")
 		
 		# Only process further input if player exists
 		if not PlayerData.players.has(targetInput) or PlayerData.players[targetInput].ready:

@@ -41,7 +41,18 @@ func _ready() -> void:
 	generate_block_list()
 
 
+signal _on_game_finished
+signal _on_round_finished
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _on_player_game_finished(_player:Player):
+	var not_finished = false
+	for player:Player in PlayerData.players.values():
+		not_finished = not_finished or player.game_in_progress
+	
+	if !not_finished:
+		await get_tree().create_timer(5).timeout
+		print("All Players Finished")
+		_on_round_finished.emit()
+		_on_game_finished.emit()
+
 	pass
