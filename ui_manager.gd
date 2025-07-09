@@ -19,17 +19,17 @@ func hide_views():
 	for child in $views.get_children():
 		if child.has_method("switch_away"):
 			child.switch_away()
-		else:
-			child.hide()
-			child.process_mode = Node.PROCESS_MODE_DISABLED
+		
+		child.hide()
+		child.process_mode = Node.PROCESS_MODE_DISABLED
 
 func show_view(child):
 	hide_views()
 	if child.has_method("switch_to"):
 		child.switch_to()
-	else:
-		child.show()
-		child.process_mode = Node.PROCESS_MODE_INHERIT
+
+	child.show()
+	child.process_mode = Node.PROCESS_MODE_INHERIT
 
 
 #################################################################
