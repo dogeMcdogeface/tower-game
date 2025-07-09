@@ -29,7 +29,6 @@ func _process(delta: float) -> void:
 			if collider.has_meta("WorldBorder"):
 				die()
 
-	pass
 
 func die():
 	queue_free()
@@ -45,7 +44,7 @@ func set_controlled(controlled:bool):
 		mass = 0.0001
 	else:
 		mass = real_mass
-		gravity_scale = 0.5
+		gravity_scale = 1
 		set_axis_velocity(Vector2.ZERO)
 
 

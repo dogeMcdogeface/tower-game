@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://11dw1al4vqhf"]
+
+[ext_resource type="Script" uid="uid://62k0xb1q6urr" path="res://ui_elements/controller_info_display.gd" id="1_d2bg2"]
+[ext_resource type="Texture2D" uid="uid://bdck41ax1llii" path="res://icon.svg" id="2_7kwbe"]
+
+[sub_resource type="Gradient" id="Gradient_d2bg2"]
+colors = PackedColorArray(0.172833, 0.172833, 0.172833, 1, 0.446777, 0.446777, 0.446777, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7kwbe"]
+gradient = SubResource("Gradient_d2bg2")
+
+[node name="ControllerInfoDisplay" type="PanelContainer"]
+offset_right = 22.0
+offset_bottom = 23.0
+script = ExtResource("1_d2bg2")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 2
+texture = SubResource("GradientTexture1D_7kwbe")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_7kwbe")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Label_name" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "xx"

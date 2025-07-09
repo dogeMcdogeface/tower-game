@@ -1,13 +1,32 @@
 extends Menu
 
+var ControllerInfoScene = preload("res://ui_elements/controller_info_display.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$MarginContainer/VBoxContainer/ScrollContainer/Control/ControllerInfoDisplay_keyboard.targetInput = PlayerInput.DEVICE_KEYBOARD_ID
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	handleControllerInfo()
+	handlePlayers()
+	
+
+@onready var ControllerInfo_container = $MarginContainer/VBoxContainer/ScrollContainer/Control/ControllerInfo_container
+@onready var Label_controller_number = $MarginContainer/VBoxContainer/HBoxContainer/Label_controller_number
+func handleControllerInfo():
+	var controller_number = Input.get_connected_joypads().size()
+	Label_controller_number.text = str(controller_number)
+	while controller_number > ControllerInfo_container.get_children().size():
+		var new_display = ControllerInfoScene.instantiate()
+		new_display.targetInput = ControllerInfo_container.get_children().size()
+		ControllerInfo_container.add_child(new_display)
+
+
+
+func handlePlayers():
 	for targetInput in range(PlayerInput.MAX_DEVICES):
 		if PlayerInput.target_is_action_just_pressed("player_action1", targetInput):
 			if not PlayerData.players.has(targetInput):
@@ -25,7 +44,7 @@ func _process(delta: float) -> void:
 				ui_manager.ui_show_main()
 		
 		# Only process further input if player exists
-		if not PlayerData.players.has(targetInput):
+		if not PlayerData.players.has(targetInput) or PlayerData.players[targetInput].ready:
 			continue
 		var player = PlayerData.players[targetInput]
 		if PlayerInput.target_is_action_just_pressed("player_left", targetInput):

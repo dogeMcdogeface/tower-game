@@ -1,6 +1,6 @@
 extends Node
 
-const block_size = 30
+const block_size = 32
 
 var block_pools := {
 	"easy": [

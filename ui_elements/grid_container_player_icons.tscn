@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cy6j4hvbb7810"]
 
-[ext_resource type="Script" uid="uid://dykt8h5gm6sgs" path="res://grid_container_player_icons.gd" id="1_efb78"]
-[ext_resource type="PackedScene" uid="uid://dab6j68rhrys7" path="res://player_icon_container.tscn" id="1_xrxqr"]
+[ext_resource type="Script" uid="uid://dykt8h5gm6sgs" path="res://ui_elements/grid_container_player_icons.gd" id="1_efb78"]
+[ext_resource type="PackedScene" uid="uid://dab6j68rhrys7" path="res://ui_elements/player_icon_container.tscn" id="1_xrxqr"]
 
 [node name="GridContainer_player_icons" type="GridContainer"]
 anchors_preset = 12

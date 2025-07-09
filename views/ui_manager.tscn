@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://cilcg2jxe23wn"]
 
-[ext_resource type="Script" uid="uid://bv1co4bayalau" path="res://ui_manager.gd" id="1_clnnl"]
+[ext_resource type="Script" uid="uid://bv1co4bayalau" path="res://views/ui_manager.gd" id="1_clnnl"]
 [ext_resource type="PackedScene" uid="uid://dx66gtytendl0" path="res://view_tower_builder.tscn" id="2_2xo1s"]
 [ext_resource type="PackedScene" uid="uid://u13h80w1femx" path="res://views/menus/menu_main.tscn" id="3_12hd6"]
 [ext_resource type="PackedScene" uid="uid://dwxf3aa4gdtyk" path="res://views/menus/menu_test_controllers.tscn" id="4_h5nok"]
-[ext_resource type="PackedScene" uid="uid://cy6j4hvbb7810" path="res://grid_container_player_icons.tscn" id="5_lky65"]
-[ext_resource type="Script" uid="uid://cpf40376fwyis" path="res://label_fps.gd" id="6_dpaio"]
+[ext_resource type="PackedScene" uid="uid://cy6j4hvbb7810" path="res://ui_elements/grid_container_player_icons.tscn" id="5_lky65"]
+[ext_resource type="Script" uid="uid://cpf40376fwyis" path="res://views/label_fps.gd" id="6_dpaio"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g1dxm"]
 font_color = Color(1, 0, 1, 1)

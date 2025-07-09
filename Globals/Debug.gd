@@ -1,7 +1,7 @@
 extends Node
 
 var fps_samples: Array = []
-var update_interval := 5.0  # seconds
+var update_interval := 2.0  # seconds
 
 var average_fps: float = 0.0
 var one_percent_low_fps: float = 0.0

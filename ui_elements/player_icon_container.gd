@@ -33,12 +33,13 @@ func _process(delta: float) -> void:
 	
 	var targetInput = assignedPlayer.targetInput
 	modulate = Color.WHITE
+	$background.modulate = assignedPlayer.color
 	if assignedPlayer.ready:
-		$background.modulate = assignedPlayer.color
+		$background.modulate.a = 1
 		$HBoxContainer/Icon_ready_no.hide()
 		$HBoxContainer/Icon_ready_yes.show()
 	else:
-		$background.modulate = 0
+		$background.modulate.a = 0.4
 		$HBoxContainer/Icon_ready_no.show()
 		$HBoxContainer/Icon_ready_yes.hide()
 		

@@ -19,6 +19,7 @@ var actions = {
 }
 
 func _ready():
+	Input.joy_connection_changed.connect(_on_joy_connection_changed)
 	DEVICE_KEYBOARD_ID = MAX_DEVICES-1
 	for action in actions:
 		for i in range(MAX_DEVICES):
@@ -29,6 +30,10 @@ func _ready():
 
 func _process(delta):
 	return
+
+
+func _on_joy_connection_changed(device: int, connected: bool):
+	print("event ", device, " ", connected)
 
 
 

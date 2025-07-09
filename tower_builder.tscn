@@ -62,25 +62,25 @@ position = Vector2(0, 450)
 metadata/_edit_lock_ = true
 
 [node name="Block" parent="RigidTerrain/Starter" instance=ExtResource("3_dlkxs")]
-position = Vector2(-30, 0)
+position = Vector2(-32, 2.06)
 
 [node name="Block2" parent="RigidTerrain/Starter" instance=ExtResource("3_dlkxs")]
-position = Vector2(30, 0)
+position = Vector2(32, 2.06)
 
 [node name="Block3" parent="RigidTerrain/Starter" instance=ExtResource("3_dlkxs")]
-position = Vector2(30, 30)
+position = Vector2(32, 34.06)
 
 [node name="Block4" parent="RigidTerrain/Starter" instance=ExtResource("3_dlkxs")]
-position = Vector2(0, 30)
+position = Vector2(0, 34.06)
 
 [node name="Block5" parent="RigidTerrain/Starter" instance=ExtResource("3_dlkxs")]
-position = Vector2(-30, 30)
+position = Vector2(-32, 34.06)
 
 [node name="Block6" parent="RigidTerrain/Starter" instance=ExtResource("3_dlkxs")]
-position = Vector2(-60, 30)
+position = Vector2(-64, 34.06)
 
 [node name="Block7" parent="RigidTerrain/Starter" instance=ExtResource("3_dlkxs")]
-position = Vector2(-60, 0)
+position = Vector2(-64, 2.06)
 
 [node name="Area2D_air" type="Area2D" parent="."]
 metadata/_edit_lock_ = true

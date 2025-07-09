@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bn4jvgymhd2fy"]
+[gd_scene load_steps=3 format=4 uid="uid://bn4jvgymhd2fy"]
 
 [ext_resource type="PackedScene" uid="uid://vqhhq72uu758" path="res://blocks/block_S1.tscn" id="1_gdknu"]
 
@@ -9,8 +9,10 @@ size = Vector2(30, 10000)
 [node name="Block" instance=ExtResource("1_gdknu")]
 
 [node name="Trail" parent="." index="0"]
-visible = true
 mesh = SubResource("QuadMesh_gdknu")
 
+[node name="TileMapLayer" parent="." index="1"]
+tile_map_data = PackedByteArray("AAAAAP//AgAFAAIAAAD/////AgAEAAIAAAAAAAAAAgAAAAMAAAD//wAAAgABAAMAAAD///7/AgAHAAAAAAAAAP7/AgAIAAAAAAAAAAEAAgAFAAMAAAD//wEAAgAFAAMAAAD+/wEAAgAFAAMAAAD9/wEAAgAHAAEAAAD9/wAAAgAHAAAAAAD+/wAAAgAEAAMAAAABAAAAAgAEAAMAAAACAAAAAgAIAAAAAAACAAEAAgAIAAEAAAABAAEAAgAFAAMAAAA=")
+
 [node name="Collision_Block3" parent="." index="3"]
-position = Vector2(30, 15)
+position = Vector2(32, 16)
