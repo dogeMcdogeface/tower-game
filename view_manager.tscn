@@ -1,10 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://cilcg2jxe23wn"]
+[gd_scene load_steps=8 format=3 uid="uid://cilcg2jxe23wn"]
 
 [ext_resource type="Script" uid="uid://bv1co4bayalau" path="res://view_manager.gd" id="1_oks7v"]
 [ext_resource type="PackedScene" uid="uid://dx66gtytendl0" path="res://view_tower_builder.tscn" id="2_bvfnh"]
 [ext_resource type="PackedScene" uid="uid://u13h80w1femx" path="res://views/menus/menu_main.tscn" id="3_bvfnh"]
 [ext_resource type="PackedScene" uid="uid://dwxf3aa4gdtyk" path="res://views/menus/menu_test_controllers.tscn" id="4_cyya4"]
 [ext_resource type="PackedScene" uid="uid://cy6j4hvbb7810" path="res://grid_container_player_icons.tscn" id="5_850fj"]
+[ext_resource type="Script" uid="uid://cpf40376fwyis" path="res://label_fps.gd" id="6_850fj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g1dxm"]
+font_color = Color(1, 0, 1, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
 [node name="view_manager" type="Node"]
 script = ExtResource("1_oks7v")
@@ -35,3 +41,28 @@ metadata/_edit_lock_ = true
 [node name="overlays" type="Node" parent="."]
 
 [node name="GridContainer_player_icons" parent="overlays" instance=ExtResource("5_850fj")]
+
+[node name="ColorRect" type="ColorRect" parent="overlays"]
+offset_left = 30.0
+offset_top = 29.0
+offset_right = 147.0
+offset_bottom = 82.0
+color = Color(0, 0, 0, 0.172549)
+
+[node name="Label_fps" type="Label" parent="overlays/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -24.5
+offset_right = 50.0
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "FPS: 000.000
+1%L: 000.000"
+label_settings = SubResource("LabelSettings_g1dxm")
+script = ExtResource("6_850fj")
