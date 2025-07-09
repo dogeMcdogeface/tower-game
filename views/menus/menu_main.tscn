@@ -47,7 +47,7 @@ text = "SETTINGS"
 
 [node name="Button_test_controllers" type="Button" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
-text = "TEST CONTROLLERS"
+text = "SETUP CONTROLLERS"
 
 [node name="Button_quit" type="Button" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2

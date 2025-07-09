@@ -1,6 +1,19 @@
 extends Node2D
 
-@export var targetInput = 0
+var _assignedPlayer: Player
+var targetInput = 0
+
+var assignedPlayer: Player:
+	set(value):
+		_assignedPlayer = value
+		if value:
+			targetInput = value.targetInput
+		else:
+			targetInput = null
+	get:
+		return _assignedPlayer
+
+
 
 var game_active = true
 
@@ -36,7 +49,8 @@ func spawn_block():
 	if(block_index >= GameDirector.current_block_list_length):
 		game_active = false
 		return
-	var block = (GameDirector.current_block_list[block_index]).instantiate()
+	var block:Block = (GameDirector.current_block_list[block_index]).instantiate()
+	block.assignedPlayer = assignedPlayer
 	block_index += 1
 	blockNode.add_child(block)
 	return block

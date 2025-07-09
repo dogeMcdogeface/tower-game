@@ -41,9 +41,11 @@ func ui_show_main() -> void:
 
 func ui_show_game_setup() -> void:
 	print("game begin")
-	var view = $views/view_tower_builder
-	show_view(view)
-
+	if(PlayerData.get_active_players_num() > 0):
+		var view = $views/view_tower_builder
+		show_view(view)
+	else:
+		ui_show_testControllers()
 
 
 func ui_show_settings() -> void:

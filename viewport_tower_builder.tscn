@@ -9,7 +9,7 @@ viewport_path = NodePath("SubViewport")
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = SubResource("ViewportTexture_dk36c")
-expand_mode = 4
+expand_mode = 3
 stretch_mode = 5
 
 [node name="SubViewport" type="SubViewport" parent="."]
