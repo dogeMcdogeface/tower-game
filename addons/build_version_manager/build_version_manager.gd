@@ -3,12 +3,16 @@ extends EditorPlugin
 
 const settings_path = "res://addons/build_version_manager/record.json"
 var dock
+var export_plugin : BuildVersionExportPlugin
 
 var versions: Array = []
  
 func _enter_tree():
 	
 	add_autoload_singleton("BuildVersion", "res://addons/build_version_manager/BuildVersion.gd")
+	export_plugin = BuildVersionExportPlugin.new()
+	export_plugin.BuildVersionManager = self
+	add_export_plugin(export_plugin)
 	
 	scene_saved.connect(_on_scene_saved)
 	dock = preload("res://addons/build_version_manager/build_version_manager_dock.tscn").instantiate()
@@ -33,6 +37,8 @@ func _enter_tree():
 
 func _exit_tree():
 	remove_control_from_docks(dock)
+	remove_autoload_singleton("BuildVersion")
+	remove_export_plugin(export_plugin)
 	# Erase the control from the memory.
 	dock.free()
 
@@ -131,3 +137,9 @@ func _on_scene_saved(filepath: String) -> void:
 	if dock.increment_on_save():
 		increment_version("sub")
 		print("Scene saved at path:", filepath)
+
+
+func _on_project_exported():
+	if dock.increment_on_export():
+		increment_version("sub")
+		print("Scene exproted th:")

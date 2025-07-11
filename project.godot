@@ -12,11 +12,11 @@ config_version=5
 
 config/name="tower game"
 config/version={
-"friendly_name": "Brave River",
-"major": 0,
-"minor": 1,
+"friendly_name": "Brave Mountain",
+"major": 0.0,
+"minor": 1.0,
 "release_timestamp": 1.75228e+09,
-"sub": 9
+"sub": 45.0
 }
 run/main_scene="uid://cilcg2jxe23wn"
 config/features=PackedStringArray("4.4", "Mobile")
