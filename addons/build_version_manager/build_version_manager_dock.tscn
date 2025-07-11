@@ -22,14 +22,23 @@ layout_mode = 2
 size_flags_horizontal = 3
 editable = false
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
 layout_mode = 2
+columns = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "Increase Sub on Save"
 
-[node name="Checkbox_sub_on_save" type="CheckBox" parent="VBoxContainer/HBoxContainer2"]
+[node name="Checkbox_sub_on_export" type="CheckBox" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+button_pressed = true
+
+[node name="Label2" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Increase Sub on Export"
+
+[node name="Checkbox_sub_on_save" type="CheckBox" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
 button_pressed = true
 

@@ -8,7 +8,7 @@ func _ready():
 	pass
 
 func update(): 
-	$VBoxContainer/HBoxContainer/Label_curr_version.text = BuildVersionManager.get_latest_version_string()
+	$VBoxContainer/HBoxContainer/Label_curr_version.text = BuildVersion.get_latest_version_string()
 	$VBoxContainer/ScrollContainer/GridContainer/Label_date.text = _format_time_now()
 	
 	
@@ -101,3 +101,9 @@ func _on_button_sub_pressed() -> void:
 func _on_button_reset_pressed() -> void:
 	BuildVersionManager.resetVersionHistory()
 	pass # Replace with function body.
+
+
+func increment_on_save():
+	return $VBoxContainer/GridContainer/Checkbox_sub_on_save.button_pressed 
+func increment_on_export():
+	return $VBoxContainer/GridContainer/Checkbox_sub_on_export.button_pressed 

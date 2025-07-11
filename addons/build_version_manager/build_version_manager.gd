@@ -1,6 +1,5 @@
 @tool 
 extends EditorPlugin 
-class_name BuildVersionManager
 
 const settings_path = "res://addons/build_version_manager/record.json"
 var dock
@@ -8,6 +7,9 @@ var dock
 var versions: Array = []
  
 func _enter_tree():
+	
+	add_autoload_singleton("BuildVersion", "res://addons/build_version_manager/BuildVersion.gd")
+	
 	scene_saved.connect(_on_scene_saved)
 	dock = preload("res://addons/build_version_manager/build_version_manager_dock.tscn").instantiate()
 	dock.BuildVersionManager = self
@@ -123,21 +125,9 @@ func increment_version(increment_type: String, friendly_name: String = "") -> vo
 	_versions_changed = true
 
 
-static func version_to_string(version: Dictionary) -> String:
-	var major = version.get("major", 0)
-	var minor = version.get("minor", 0)
-	var sub = version.get("sub", 0)
-	var name = version.get("friendly_name", "Unnamed")
-	return "%d.%d.%d (%s)" % [major, minor, sub, name]
 
-
-static func get_latest_version() -> Dictionary:
-	return (ProjectSettings.get_setting("application/config/version", ""))
-static func get_latest_version_string() -> String:
-	return version_to_string(get_latest_version())
- 
- 
- 
 
 func _on_scene_saved(filepath: String) -> void:
-	print("Scene saved at path:", filepath)
+	if dock.increment_on_save():
+		increment_version("sub")
+		print("Scene saved at path:", filepath)
