@@ -9,5 +9,6 @@ script = ExtResource("1_j41e1")
 
 [node name="Tree" type="Tree" parent="."]
 layout_mode = 2
-columns = 3
+theme_override_constants/draw_relationship_lines = 0
+columns = 2
 column_titles_visible = true

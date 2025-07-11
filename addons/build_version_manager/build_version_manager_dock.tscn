@@ -1,0 +1,97 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4egq5qtllyly"]
+
+[ext_resource type="Script" uid="uid://bbobxmvyf64g8" path="res://addons/build_version_manager/build_version_manager_dock.gd" id="1_jlsrw"]
+
+[node name="BuildVersionManagerDock" type="MarginContainer"]
+offset_right = 202.0
+offset_bottom = 301.0
+script = ExtResource("1_jlsrw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Current Version:"
+
+[node name="Label_curr_version" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+editable = false
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Increase Sub on Save"
+
+[node name="Checkbox_sub_on_save" type="CheckBox" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+button_pressed = true
+
+[node name="Button_reset" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Reset Version History"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/ScrollContainer"]
+layout_mode = 2
+columns = 5
+
+[node name="Label2" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+text = "MAJOR"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+text = "MINOR"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+text = "SUB"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+text = "FRIENDLY"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+text = "DATE"
+horizontal_alignment = 1
+
+[node name="Button_major" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+text = "+"
+
+[node name="Button_minor" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+text = "+"
+
+[node name="Button_sub" type="Button" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+text = "+"
+
+[node name="LineEdit_friendly" type="LineEdit" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label_date" type="Label" parent="VBoxContainer/ScrollContainer/GridContainer"]
+layout_mode = 2
+text = "22/22/22"
+
+[node name="Spacer" type="Node" parent="VBoxContainer/ScrollContainer/GridContainer"]
+
+[connection signal="pressed" from="VBoxContainer/Button_reset" to="." method="_on_button_reset_pressed"]
+[connection signal="pressed" from="VBoxContainer/ScrollContainer/GridContainer/Button_major" to="." method="_on_button_major_pressed"]
+[connection signal="pressed" from="VBoxContainer/ScrollContainer/GridContainer/Button_minor" to="." method="_on_button_minor_pressed"]
+[connection signal="pressed" from="VBoxContainer/ScrollContainer/GridContainer/Button_sub" to="." method="_on_button_sub_pressed"]

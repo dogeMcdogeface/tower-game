@@ -1,8 +1,10 @@
 extends Menu
 
 func _on_button_play_pressed() -> void:
-	ui_manager.fsm_apply_transition("_on_button_play_pressed")
-	#ui_manager.ui_show_game_setup()
+	if PlayerData.get_ready_status() == PlayerData.ALL_READY:
+		ui_manager.fsm_apply_transition("_on_button_play_pressed_with_players")
+	else:
+		ui_manager.fsm_apply_transition("_on_button_play_pressed_without_players")
 
 func _on_button_settings_pressed() -> void:
 	ui_manager.fsm_apply_transition("_on_button_settings_pressed")

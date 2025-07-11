@@ -11,6 +11,13 @@ config_version=5
 [application]
 
 config/name="tower game"
+config/version={
+"friendly_name": "Brave Phoenix",
+"major": 0.0,
+"minor": 1.0,
+"release_timestamp": 1.75227e+09,
+"sub": 6.0
+}
 run/main_scene="uid://cilcg2jxe23wn"
 config/features=PackedStringArray("4.4", "Mobile")
 run/max_fps=120
@@ -34,7 +41,7 @@ window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/detail_time_tracker/plugin.cfg")
+enabled=PackedStringArray("res://addons/build_version_manager/plugin.cfg", "res://addons/detail_time_tracker/plugin.cfg")
 
 [input]
 

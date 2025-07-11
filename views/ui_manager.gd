@@ -43,7 +43,8 @@ var state
 	"main": {
 		"scene": $views/menu_main,
 		"trans":{
-			"_on_button_play_pressed": "check_players_to_play",
+			"_on_button_play_pressed_with_players": "tower_builder",
+			"_on_button_play_pressed_without_players": "check_players_to_play",
 			"_on_button_settings_pressed": "settings",
 			"_on_button_test_controllers_pressed": "test_controller",
 		}
@@ -70,7 +71,7 @@ var state
 	},
 }
 
-func fsm_apply_transition(trans:String):
+func fsm_apply_transition(trans:String, args = []):
 	print("current state ", state, " Transition ", trans)
 	if state not in states:
 		print("Unknown state...")
@@ -83,6 +84,7 @@ func fsm_apply_transition(trans:String):
 	if trans not in states[state].trans:
 		print("Unknown Transition...")
 		return false
+	
 	
 	fsm_set_state(states[state].trans[trans])
 

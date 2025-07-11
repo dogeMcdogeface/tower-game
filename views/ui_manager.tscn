@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cilcg2jxe23wn"]
+[gd_scene load_steps=10 format=3 uid="uid://cilcg2jxe23wn"]
 
 [ext_resource type="Script" uid="uid://bv1co4bayalau" path="res://views/ui_manager.gd" id="1_clnnl"]
 [ext_resource type="PackedScene" uid="uid://dx66gtytendl0" path="res://view_tower_builder.tscn" id="2_2xo1s"]
@@ -6,6 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://dwxf3aa4gdtyk" path="res://views/menus/menu_test_controllers.tscn" id="4_h5nok"]
 [ext_resource type="PackedScene" uid="uid://cy6j4hvbb7810" path="res://ui_elements/grid_container_player_icons.tscn" id="5_lky65"]
 [ext_resource type="Script" uid="uid://cpf40376fwyis" path="res://views/label_fps.gd" id="6_dpaio"]
+[ext_resource type="Script" uid="uid://cxapwstbvrte3" path="res://ui_elements/label_version.gd" id="7_aolcw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kk8bv"]
+font_size = 12
+font_color = Color(1, 1, 1, 0.541176)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_g1dxm"]
 font_color = Color(1, 0, 1, 1)
@@ -19,7 +26,6 @@ script = ExtResource("1_clnnl")
 
 [node name="view_tower_builder" parent="views" node_paths=PackedStringArray("ui_manager") instance=ExtResource("2_2xo1s")]
 process_mode = 4
-visible = false
 ui_manager = NodePath("../..")
 metadata/_edit_lock_ = true
 
@@ -42,6 +48,15 @@ metadata/_edit_lock_ = true
 [node name="overlays" type="Node" parent="."]
 
 [node name="GridContainer_player_icons" parent="overlays" instance=ExtResource("5_lky65")]
+
+[node name="Label_version" type="Label" parent="overlays"]
+offset_left = 30.0
+offset_top = 5.0
+offset_right = 157.0
+offset_bottom = 28.0
+text = "Version: 000.000"
+label_settings = SubResource("LabelSettings_kk8bv")
+script = ExtResource("7_aolcw")
 
 [node name="ColorRect" type="ColorRect" parent="overlays"]
 offset_left = 30.0
