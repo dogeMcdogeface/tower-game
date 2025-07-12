@@ -71,7 +71,7 @@ var state
 	},
 }
 
-func fsm_apply_transition(trans:String, args = []):
+func fsm_apply_transition(trans:String):
 	print("current state ", state, " Transition ", trans)
 	if state not in states:
 		print("Unknown state...")

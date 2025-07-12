@@ -83,12 +83,15 @@ func get_active_tower_builders() -> Array:
 
 func update_round_status():
 	if !round_active: return
-	var finished = true
 	
+	
+	#Logic to actually determine if the round has finished depending on game mode
+
+	var finished = true
 	for tower_builder in  get_active_tower_builders():
 		finished = finished and tower_builder.block_list.is_empty()
 	
-	#Logic to actually determine if the round has finished depending on game mode
+	#Inform the rest of the game that the round has finished
 	if finished:
 		round_active = false
 		await get_tree().create_timer(5).timeout

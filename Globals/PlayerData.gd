@@ -2,9 +2,6 @@ extends Node
 
 const MAX_PLAYERS = 4
 
-
-
-const player_res = preload("res://Player.tres")
 var players: Dictionary[int, Player] = {}
 signal playerDataChanged()
 
