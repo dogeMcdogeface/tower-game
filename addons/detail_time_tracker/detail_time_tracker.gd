@@ -106,7 +106,6 @@ func _process(delta):
 	var save_file = FileAccess.open(settings_path, FileAccess.WRITE)
 	var json_string = JSON.stringify(activities)
 	save_file.store_line(json_string)
-	print("Savoing addon")
 	
 
 
