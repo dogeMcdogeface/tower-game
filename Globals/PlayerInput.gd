@@ -56,7 +56,7 @@ func _unhandled_input(event):
 
 
 
-func target_is_action_just_pressed(action: String, targetInput:int) -> bool:
-	return Input.is_action_just_pressed(str(targetInput)+action)
-func target_is_action_pressed(action: String, targetInput:int) -> bool:
-	return Input.is_action_pressed(str(targetInput)+action)
+func target_is_action_just_pressed(action: String, target_input:int) -> bool:
+	return Input.is_action_just_pressed(str(target_input)+action)
+func target_is_action_pressed(action: String, target_input:int) -> bool:
+	return Input.is_action_pressed(str(target_input)+action)

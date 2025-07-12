@@ -1,14 +1,14 @@
 class_name TowerBuilder extends Node2D
 
 var _assigned_player: Player
-var targetInput = -1
+var target_input = -1
 var assigned_player: Player:
 	set(value):
 		_assigned_player = value
 		if value:
-			targetInput = value.targetInput
+			target_input = value.target_input
 		else:
-			targetInput = null
+			target_input = null
 	get:
 		return _assigned_player
 
@@ -80,7 +80,7 @@ func _physics_process(delta):
 	}
 
 	for action in move_actions.keys():
-		if PlayerInput.target_is_action_just_pressed(action, targetInput):
+		if PlayerInput.target_is_action_just_pressed(action, target_input):
 			var current_transform = PhysicsServer2D.body_get_state(
 				active_block.get_rid(),
 				PhysicsServer2D.BODY_STATE_TRANSFORM
@@ -91,11 +91,11 @@ func _physics_process(delta):
 				PhysicsServer2D.BODY_STATE_TRANSFORM,
 				new_transform
 			)
-			#print(targetInput, action)
+			#print(target_input, action)
 
 
 # Handle rotation
-	if PlayerInput.target_is_action_just_pressed("player_rotate", targetInput):
+	if PlayerInput.target_is_action_just_pressed("player_rotate", target_input):
 		var current_transform = PhysicsServer2D.body_get_state(
 			active_block.get_rid(),
 			PhysicsServer2D.BODY_STATE_TRANSFORM
@@ -117,14 +117,14 @@ func _physics_process(delta):
 			PhysicsServer2D.BODY_STATE_TRANSFORM,
 			rotated_transform
 		)
-		#print(targetInput, "player_rotate")
-	if PlayerInput.target_is_action_pressed("player_down", targetInput):
+		#print(target_input, "player_rotate")
+	if PlayerInput.target_is_action_pressed("player_down", target_input):
 		final_fall_speed = fall_speed * 2
-		#print(targetInput, "player_down")
-	if PlayerInput.target_is_action_just_pressed("player_action1", targetInput):
-		print(targetInput, "player_action1")
-	if PlayerInput.target_is_action_just_pressed("player_action2", targetInput):
-		print(targetInput, "player_action2")
+		#print(target_input, "player_down")
+	if PlayerInput.target_is_action_just_pressed("player_action1", target_input):
+		print(target_input, "player_action1")
+	if PlayerInput.target_is_action_just_pressed("player_action2", target_input):
+		print(target_input, "player_action2")
 
 	# Constant falling
 	active_block.set_axis_velocity(Vector2.DOWN * final_fall_speed )

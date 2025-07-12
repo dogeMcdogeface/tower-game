@@ -39,6 +39,36 @@ func _compute_metrics():
 	for fps in low_samples:
 		low_sum += fps
 	one_percent_low_fps = low_sum / low_samples.size()
-
 	# Optional debug output
 	#print("Average FPS: %.2f, 1%% Low: %.2f" % [average_fps, one_percent_low_fps])
+
+func debug_add_dummy_player():
+	var target_input = get_next_available_target_input()
+	print("Registering dummy player ", target_input )
+	if PlayerData.players.size() >= PlayerData.MAX_PLAYERS:
+		print("No available player slots")
+		return
+	PlayerData.register_player(target_input)
+	PlayerData.players[target_input].ready = true
+	
+func get_next_available_target_input() -> int:
+	var used := {}
+	for player in PlayerData.players.values():
+		if player:
+			used[player.target_input] = true
+	
+	var i := 0
+	while used.has(i):
+		i += 1
+	
+	return i
+
+	
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("debug_add_player"):
+		debug_add_dummy_player()
+	if event.is_action_pressed("debug_warpspeed"):
+		Engine.time_scale = 5
+	if event.is_action_released("debug_warpspeed"):
+		Engine.time_scale = 1

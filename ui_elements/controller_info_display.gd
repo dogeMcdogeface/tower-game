@@ -1,6 +1,6 @@
 extends Control
 
-var targetInput: int = -1
+var target_input: int = -1
 
 @onready var label_name = find_child("Label_name")
 
@@ -11,8 +11,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if targetInput == PlayerInput.DEVICE_KEYBOARD_ID:
+	if target_input == PlayerInput.DEVICE_KEYBOARD_ID:
 		label_name.text = "KEYBOARD"
 	else:
-		label_name.text = Input.get_joy_name(targetInput)
+		label_name.text = Input.get_joy_name(target_input)
 	pass

@@ -34,7 +34,7 @@ func _process(delta: float) -> void:
 		$HBoxContainer/Icon_ready_yes.hide()
 		return
 	
-	var targetInput = assigned_player.targetInput
+	var target_input = assigned_player.target_input
 	modulate = Color.WHITE
 	$background.modulate = assigned_player.color
 	
@@ -54,10 +54,10 @@ func _process(delta: float) -> void:
 		
 	$HBoxContainer/VBoxContainer/Label_name.text = assigned_player.name
 	
-	if (targetInput == PlayerInput.DEVICE_KEYBOARD_ID):
+	if (target_input == PlayerInput.DEVICE_KEYBOARD_ID):
 		$HBoxContainer/VBoxContainer/Label_controller.text = "keyboard"
 	else:
-		$HBoxContainer/VBoxContainer/Label_controller.text = Input.get_joy_name(targetInput)
+		$HBoxContainer/VBoxContainer/Label_controller.text = Input.get_joy_name(target_input)
 	
 	for action in player_actions:
-		player_actions[action].button_pressed = PlayerInput.target_is_action_pressed(action, targetInput)
+		player_actions[action].button_pressed = PlayerInput.target_is_action_pressed(action, target_input)

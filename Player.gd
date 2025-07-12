@@ -25,7 +25,7 @@ var round_in_progress = false
 var game_in_progress = false
 
 
-var targetInput: int
+var target_input: int
 var titleIndex = 0
 var termIndex = 0
 var _colorIndex: int = -1 
@@ -73,12 +73,12 @@ var color: Color:
 			return Color(1, 1, 1) # default white if no color assigned
 		return colors[_colorIndex]
 
-func _init(_targetInput):
-	targetInput = _targetInput
+func _init(_target_input):
+	target_input = _target_input
 	titleIndex = randi() % 10000 
 	termIndex = randi() % 10000
 	colorIndex = randi() % 10000
 	
 
 func _to_string():
-	return "Player ( name:\"%s\" input:%s color:%s)" % [ name, targetInput, colorIndex]
+	return "Player ( name:\"%s\" input:%s color:%s)" % [ name, target_input, colorIndex]

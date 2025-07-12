@@ -16,19 +16,19 @@ func _ready() -> void:
 
 
 
-func register_player(targetInput):
-	if not players.has(targetInput):
-		var new_player := Player.new(targetInput)
-		players[targetInput] =  new_player
+func register_player(target_input):
+	if not players.has(target_input):
+		var new_player := Player.new(target_input)
+		players[target_input] =  new_player
 		print("Player registered. Total players: ", get_active_players_num())
 	else:
 		print("Player already registered.")
 	playerDataChanged.emit()
 
 
-func remove_player(targetInput):
-	if players.has(targetInput):
-		players.erase(targetInput)
+func remove_player(target_input):
+	if players.has(target_input):
+		players.erase(target_input)
 		print("Player removed. Total players: ", get_active_players_num())
 	else:
 		print("Player not found.")
