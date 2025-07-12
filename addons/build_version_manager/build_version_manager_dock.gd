@@ -104,7 +104,6 @@ func _on_button_reset_pressed() -> void:
 
 
 func increment_on_save():
-	print($VBoxContainer/GridContainer/Checkbox_sub_on_save.button_pressed)
 	return $VBoxContainer/GridContainer/Checkbox_sub_on_save.button_pressed 
 func increment_on_export():
 	return $VBoxContainer/GridContainer/Checkbox_sub_on_export.button_pressed 

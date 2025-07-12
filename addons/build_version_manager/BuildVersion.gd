@@ -4,6 +4,7 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	print("Game running on version ", get_latest_version_string())
 	pass # Replace with function body.
 
 

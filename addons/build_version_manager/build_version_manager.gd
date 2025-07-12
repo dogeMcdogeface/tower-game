@@ -3,12 +3,12 @@ extends EditorPlugin
 
 const settings_path = "res://addons/build_version_manager/record.json"
 var dock
-var export_plugin : BuildVersionExportPlugin
+var export_plugin 
+var BuildVersionExportPlugin = preload("res://addons/build_version_manager/build_version_export.gd")
 
 var versions: Array = []
  
 func _enter_tree():
-	
 	add_autoload_singleton("BuildVersion", "res://addons/build_version_manager/BuildVersion.gd")
 	export_plugin = BuildVersionExportPlugin.new()
 	export_plugin.BuildVersionManager = self
@@ -56,16 +56,12 @@ func _process(delta):
 	var json_string = JSON.stringify(versions)
 	if last_json_string == json_string: return
 
-	var dd  = preload("res://addons/build_version_manager/build_version_manager_dock.tscn").instantiate()
-
 	ProjectSettings.set_setting("application/config/version", versions[-1])
-	#ProjectSettings.set_setting("application/config/version", dd)
 	ProjectSettings.save()
 	dock.update()
 	var save_file = FileAccess.open(settings_path, FileAccess.WRITE)
 	last_json_string = json_string 
 	save_file.store_line(json_string)
-	#resetVersionHistory()
 
 
 func resetVersionHistory():
@@ -83,14 +79,39 @@ func get_default_version() -> Dictionary:
 		"friendly_name": _generate_friendly_name(),
 		"release_timestamp": Time.get_unix_time_from_system()
 	}
-	
+
+
+const adjectives = [
+	"Brave", "Silent", "Crimson", "Witty", "Bright",
+	"Rapid", "Misty", "Clever", "Swift", "Frosty",
+	"Jolly", "Sharp", "Quiet", "Zesty", "Bold",
+	"Feisty", "Sunny", "Vivid", "Snappy", "Gleam"
+]
+const nouns = [
+	"Falcon", "River", "Shadow", "Phoenix", "Mountain",
+	"Blaze", "Ridge", "Comet", "Storm", "Flame",
+	"Stone", "Glade", "Hawk", "Cloud", "Viper",
+	"Drake", "Spire", "Flint", "Grove", "Breeze"
+]
+
+
 func _generate_friendly_name() -> String:
-	var adjectives = ["Brave", "Silent", "Crimson", "Witty", "Bright"]
-	var nouns = ["Falcon", "River", "Mountain", "Shadow", "Phoenix"]
-	return "%s %s" % [
-		adjectives[randi() % adjectives.size()],
-		nouns[randi() % nouns.size()]
-	]
+	var used_names := versions.map(func(v): return v.get("friendly_name"))
+	var max_attempts = 20
+	var attempt = 0
+	while attempt < max_attempts:
+		var name = "%s %s" % [
+			adjectives[randi() % adjectives.size()],
+			nouns[randi() % nouns.size()]
+		]
+		if name not in used_names:
+			return name
+		attempt += 1
+
+	push_warning("Could not generate unique name after %d attempts." % max_attempts)
+	return "Unnamed Version %d" % Time.get_unix_time_from_system()  # fallback name
+	
+	
 func get_readable_time(timestamp: int) -> String:
 	var datetime := Time.get_datetime_dict_from_unix_time(timestamp)
 	return "%02d/%02d/%02d %02d:%02d" % [
@@ -136,10 +157,8 @@ func increment_version(increment_type: String, friendly_name: String = "") -> vo
 func _on_scene_saved(filepath: String) -> void:
 	if dock.increment_on_save():
 		increment_version("sub")
-		print("Scene saved at path:", filepath)
 
 
 func _on_project_exported():
 	if dock.increment_on_export():
 		increment_version("sub")
-		print("Scene exproted th:")

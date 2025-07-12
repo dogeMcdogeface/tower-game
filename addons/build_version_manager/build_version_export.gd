@@ -1,5 +1,5 @@
 @tool 
-class_name BuildVersionExportPlugin extends EditorExportPlugin 
+extends EditorExportPlugin 
 
 var BuildVersionManager
 
