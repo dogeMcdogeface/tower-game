@@ -8,7 +8,7 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 
-static func version_to_string(version: Dictionary) -> String:
+func version_to_string(version: Dictionary) -> String:
 	var major = version.get("major", 0)
 	var minor = version.get("minor", 0)
 	var sub = version.get("sub", 0)
@@ -16,7 +16,7 @@ static func version_to_string(version: Dictionary) -> String:
 	return "%d.%d.%d (%s)" % [major, minor, sub, name]
 
 
-static func get_latest_version() -> Dictionary:
+func get_latest_version() -> Dictionary:
 	return (ProjectSettings.get_setting("application/config/version", ""))
-static func get_latest_version_string() -> String:
+func get_latest_version_string() -> String:
 	return version_to_string(get_latest_version())
