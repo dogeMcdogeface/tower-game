@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dkah6rykgvye0"]
+[gd_scene load_steps=4 format=3 uid="uid://dkah6rykgvye0"]
 
 [ext_resource type="PackedScene" uid="uid://bgtt6psvobs7s" path="res://tower_builder.tscn" id="1_64jmk"]
+[ext_resource type="PackedScene" uid="uid://ce6wq0tge70jl" path="res://ui_elements/next_piece_display.tscn" id="1_btwkg"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_dk36c"]
 viewport_path = NodePath("SubViewport")
@@ -11,6 +12,17 @@ size_flags_vertical = 3
 texture = SubResource("ViewportTexture_dk36c")
 expand_mode = 3
 stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Next_Piece_Display" parent="MarginContainer" instance=ExtResource("1_btwkg")]
+layout_mode = 2
 
 [node name="SubViewport" type="SubViewport" parent="."]
 disable_3d = true

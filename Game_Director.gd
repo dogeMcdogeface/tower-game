@@ -71,24 +71,23 @@ func start_game():
 func start_round():
 	generate_block_list()
 	round_active = true
-	for tower_builder in  get_active_tower_builders():
+	for tower_builder:TowerBuilder in  get_active_tower_builders():
 		tower_builder.start_round(current_block_list.duplicate())
 
 
 func get_active_tower_builders() -> Array:
 	return get_tree().get_nodes_in_group("tower_builders").filter(
-		func(tb): return tb.assignedPlayer != null
+		func(tb): return tb.assigned_player != null
 	)
 
 
 func update_round_status():
 	if !round_active: return
 	
-	
 	#Logic to actually determine if the round has finished depending on game mode
 
 	var finished = true
-	for tower_builder in  get_active_tower_builders():
+	for tower_builder:TowerBuilder in  get_active_tower_builders():
 		finished = finished and tower_builder.block_list.is_empty()
 	
 	#Inform the rest of the game that the round has finished

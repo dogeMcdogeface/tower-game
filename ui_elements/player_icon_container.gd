@@ -1,6 +1,6 @@
 extends MarginContainer
 
-var assignedPlayer:Player
+var assigned_player:Player
 
 
 @onready var player_actions = {
@@ -25,7 +25,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if !assignedPlayer:
+	if !assigned_player:
 		modulate = Color(0.463, 0.463, 0.463)
 		$background.modulate= 0
 		$HBoxContainer/VBoxContainer/Label_name.text = ""
@@ -34,11 +34,11 @@ func _process(delta: float) -> void:
 		$HBoxContainer/Icon_ready_yes.hide()
 		return
 	
-	var targetInput = assignedPlayer.targetInput
+	var targetInput = assigned_player.targetInput
 	modulate = Color.WHITE
-	$background.modulate = assignedPlayer.color
+	$background.modulate = assigned_player.color
 	
-	if !assignedPlayer.ready:
+	if !assigned_player.ready:
 		$background.modulate.a = 0.4
 		$HBoxContainer/Icon_ready_no.show()
 		$HBoxContainer/Icon_ready_yes.hide()
@@ -52,7 +52,7 @@ func _process(delta: float) -> void:
 		$HBoxContainer/Icon_ready_no.hide()
 		$HBoxContainer/Icon_ready_yes.show()
 		
-	$HBoxContainer/VBoxContainer/Label_name.text = assignedPlayer.name
+	$HBoxContainer/VBoxContainer/Label_name.text = assigned_player.name
 	
 	if (targetInput == PlayerInput.DEVICE_KEYBOARD_ID):
 		$HBoxContainer/VBoxContainer/Label_controller.text = "keyboard"

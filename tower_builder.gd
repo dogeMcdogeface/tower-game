@@ -1,16 +1,16 @@
-extends Node2D
+class_name TowerBuilder extends Node2D
 
-var _assignedPlayer: Player
+var _assigned_player: Player
 var targetInput = -1
-var assignedPlayer: Player:
+var assigned_player: Player:
 	set(value):
-		_assignedPlayer = value
+		_assigned_player = value
 		if value:
 			targetInput = value.targetInput
 		else:
 			targetInput = null
 	get:
-		return _assignedPlayer
+		return _assigned_player
 
 
 
@@ -49,7 +49,7 @@ func spawn_block():
 		return
 	var res = block_list.pop_back()
 	var block:Block = res.instantiate()
-	block.assignedPlayer = assignedPlayer
+	block.assigned_player = assigned_player
 	blockNode.add_child(block)
 	return block
 

@@ -36,8 +36,8 @@ func show_player_icon(num):
 		child.visible = i < num
 		
 		if i < player_list.size():
-			child.assignedPlayer = player_list[i]
+			child.assigned_player = player_list[i]
 		else:
-			child.assignedPlayer = null
+			child.assigned_player = null
 
 	

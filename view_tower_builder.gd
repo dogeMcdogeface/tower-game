@@ -37,10 +37,11 @@ func show_player_viewport(num):
 		
 		if i < player_list.size():
 			child.process_mode = Node.PROCESS_MODE_INHERIT
-			child.get_node("SubViewport/tower_builder").assignedPlayer = player_list[i]
+			child.propagate_call("set_Player", [player_list[i]])
+			child.propagate_call("set", ["assigned_player", player_list[i]])
 		else:
 			child.process_mode = Node.PROCESS_MODE_DISABLED
-			child.get_node("SubViewport/tower_builder").assignedPlayer = null
+			child.propagate_call("set_Player", [null])
 
 
 func switch_to():

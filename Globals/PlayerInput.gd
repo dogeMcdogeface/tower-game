@@ -33,7 +33,7 @@ func _process(delta):
 
 
 func _on_joy_connection_changed(device: int, connected: bool):
-	print("event ", device, " ", connected)
+	print("Joypad event detected: id", device, " ", connected)
 
 
 

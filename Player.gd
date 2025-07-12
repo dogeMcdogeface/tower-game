@@ -28,7 +28,7 @@ var game_in_progress = false
 var targetInput: int
 var titleIndex = 0
 var termIndex = 0
-var _colorIndex: int = -1  # Internal backing variable for colorIndex
+var _colorIndex: int = -1 
 
 
 var name: String:

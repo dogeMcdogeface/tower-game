@@ -1,14 +1,14 @@
 class_name Block extends RigidBody2D
 
-var assignedPlayer:Player
+var assigned_player:Player
 
 var hasCollided = false
 var is_controlled =false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if assignedPlayer:
-		modulate = assignedPlayer.color
+	if assigned_player:
+		modulate = assigned_player.color
 	pass
 
 
