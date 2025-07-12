@@ -14,22 +14,33 @@ func _ready():
 	$Tree.set_column_title(1, "Time")
 	$Tree.add_theme_constant_override("draw_relationship_lines", 0 )
 
-func update(dict : Dictionary, get_aggregate_time:Callable): 
-	$Tree.clear()
-	
-	var root = $Tree.create_item()
-	root.set_text(0, "Total Time on Project")
-	root.set_icon(0,  title_to_icon("Total Time on Project"))
-	root.set_text(1, _format_time(get_aggregate_time.call(dict)))
-	root.set_text_overrun_behavior(1, TextServer.OVERRUN_NO_TRIMMING )
+func update(dict: Dictionary, get_aggregate_time: Callable):
+	var root = $Tree.get_root()
+	if root == null:
+		root = $Tree.create_item()
+	else:
+		# Update root text and icon
+		root.set_text(0, "Total Time on Project")
+		root.set_icon(0, title_to_icon("Total Time on Project"))
+		root.set_text(1, _format_time(get_aggregate_time.call(dict)))
+		root.set_text_overrun_behavior(1, TextServer.OVERRUN_NO_TRIMMING)
 
+	# Build/update recursively
 	recursive_tree_build(dict, root, get_aggregate_time)
-	root.call_recursive("set_text_alignment", 1, HORIZONTAL_ALIGNMENT_RIGHT )
+
+	# Align text
+	root.call_recursive("set_text_alignment", 1, HORIZONTAL_ALIGNMENT_RIGHT)
 
 
-func recursive_tree_build(dict, root, get_aggregate_time):
-	var keys = dict.keys()
-	keys.sort_custom(func(x: String, y: String) -> bool: 
+func recursive_tree_build(dict: Dictionary, parent: TreeItem, get_aggregate_time: Callable):
+	var children_map := {}  # Existing children by name
+	var child := parent.get_first_child()
+	while child != null:
+		children_map[child.get_text(0)] = child
+		child = child.get_next()
+
+	var keys := dict.keys()
+	keys.sort_custom(func(x: String, y: String) -> bool:
 		if x.contains("other") or x.contains("unknown"):
 			return false
 		if y.contains("other") or y.contains("unknown"):
@@ -39,17 +50,31 @@ func recursive_tree_build(dict, root, get_aggregate_time):
 		if dict[y] is float and dict[x] is Dictionary:
 			return false
 		return x < y)
-		
-	for e in keys:
-		var line = $Tree.create_item(root)
-		line.set_text(0, e)
-		line.set_icon(0, title_to_icon(e))
-		if dict[e] is float:
-			line.set_text(1, _format_time(dict[e]))
-		elif dict[e] is Dictionary:
-			line.set_text(1, _format_time(get_aggregate_time.call(dict[e])))
-			recursive_tree_build(dict[e], line, get_aggregate_time)
 
+	var used_keys := []
+
+	for e in keys:
+		var item: TreeItem
+
+		if children_map.has(e):
+			item = children_map[e]
+		else:
+			item = $Tree.create_item(parent)
+			item.set_text(0, e)
+			item.set_icon(0, title_to_icon(e))
+
+		if dict[e] is float:
+			item.set_text(1, _format_time(dict[e]))
+		elif dict[e] is Dictionary:
+			item.set_text(1, _format_time(get_aggregate_time.call(dict[e])))
+			recursive_tree_build(dict[e], item, get_aggregate_time)
+
+		used_keys.append(e)
+
+	# Optionally remove children not in the updated data
+	for key in children_map.keys():
+		if not used_keys.has(key):
+			children_map[key].free()
 
 func title_to_icon(text):
 	match text:
