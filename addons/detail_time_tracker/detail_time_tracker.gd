@@ -41,11 +41,19 @@ func _exit_tree():
 	# Erase the control from the memory.
 	dock.free()
 
-var elapsed_time = 0
+
+
+
 var update_interval = 1
+var store_interval = 10
+
+var elapsed_time = 0
+var store_elapsed_time = 0
+
 func _process(delta):
 	if !Engine.is_editor_hint():return
 	elapsed_time += delta
+	store_elapsed_time += delta
 	if elapsed_time < update_interval:return
 	delta = elapsed_time
 	elapsed_time = 0
@@ -90,10 +98,15 @@ func _process(delta):
 	else:
 		activities.outside += delta
 	#print(activities)
+
 	dock.update(activities, get_aggregate_time)
+
+	if store_elapsed_time < store_interval:return
+	store_elapsed_time = 0
 	var save_file = FileAccess.open(settings_path, FileAccess.WRITE)
 	var json_string = JSON.stringify(activities)
 	save_file.store_line(json_string)
+	print("Savoing addon")
 	
 
 
