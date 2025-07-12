@@ -8,7 +8,7 @@ class_name ui_manager extends Node
 func _ready() -> void:
 	print("Program Starting")
 	
-	GameDirector._on_game_finished.connect(_on_game_finished)
+	GameDirector._on_game_finish.connect(_on_game_finish)
 	
 	fsm_set_state("main")
 	pass # Replace with function body.
@@ -99,9 +99,8 @@ func fsm_set_state(newState):
 	show_view(states[state].scene)
 #################################################################
 
-func _on_game_finished():
+func _on_game_finish():
 	fsm_apply_transition("_close")
-	print("GAME FINISHEIRHIEHRI")
 
 func exit_game() -> void:
 	print("exit game")

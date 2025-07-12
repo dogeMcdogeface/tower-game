@@ -15,6 +15,9 @@ var assignedPlayer:Player
 }
 
 
+var _ready_icon_duration = 2000
+var _ready_icon_timer = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -34,14 +37,20 @@ func _process(delta: float) -> void:
 	var targetInput = assignedPlayer.targetInput
 	modulate = Color.WHITE
 	$background.modulate = assignedPlayer.color
-	if assignedPlayer.ready:
-		$background.modulate.a = 1
-		$HBoxContainer/Icon_ready_no.hide()
-		$HBoxContainer/Icon_ready_yes.show()
-	else:
+	
+	if !assignedPlayer.ready:
 		$background.modulate.a = 0.4
 		$HBoxContainer/Icon_ready_no.show()
 		$HBoxContainer/Icon_ready_yes.hide()
+		_ready_icon_timer = Time.get_ticks_msec()
+	elif Time.get_ticks_msec() > _ready_icon_timer + _ready_icon_duration:
+		$background.modulate.a = 1
+		$HBoxContainer/Icon_ready_no.hide()
+		$HBoxContainer/Icon_ready_yes.hide()
+	else:
+		$background.modulate.a = 1
+		$HBoxContainer/Icon_ready_no.hide()
+		$HBoxContainer/Icon_ready_yes.show()
 		
 	$HBoxContainer/VBoxContainer/Label_name.text = assignedPlayer.name
 	

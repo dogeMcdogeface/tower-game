@@ -1,7 +1,7 @@
 extends Node2D
 
 var _assignedPlayer: Player
-var targetInput = 0
+var targetInput = -1
 var assignedPlayer: Player:
 	set(value):
 		_assignedPlayer = value
@@ -14,8 +14,7 @@ var assignedPlayer: Player:
 
 
 
-var game_active = true
-
+var round_active = true
 @onready var blockNode = $Blocks
 var active_block:RigidBody2D = null
 @export var fall_speed = 10
@@ -26,10 +25,8 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	
-	if(!game_active):return
-	
-	assignedPlayer.game_in_progress = true
+	if(!round_active):return
+
 	if(active_block == null):
 		var block = spawn_block()
 		if(block):
@@ -44,24 +41,29 @@ func _process(delta: float) -> void:
 
 
 
-var block_index = 0
+
+
 func spawn_block():
-	if(block_index >= GameDirector.current_block_list_length):
+	if block_list.is_empty():
 		stop_game()
 		return
-	var block:Block = (GameDirector.current_block_list[block_index]).instantiate()
+	var res = block_list.pop_back()
+	var block:Block = res.instantiate()
 	block.assignedPlayer = assignedPlayer
-	block_index += 1
 	blockNode.add_child(block)
 	return block
 
 
 
-func stop_game():
-	game_active = false
-	assignedPlayer.game_in_progress = false
-	GameDirector._on_player_game_finished(assignedPlayer)
+var block_list = []
+func start_round(_block_list):
+	for block in blockNode.get_children():
+		block.queue_free()
+	block_list = _block_list
+	round_active = true
 
+func stop_game():
+	round_active = false
 
 func _physics_process(delta):
 	if active_block == null:
@@ -115,10 +117,10 @@ func _physics_process(delta):
 			PhysicsServer2D.BODY_STATE_TRANSFORM,
 			rotated_transform
 		)
-		print(targetInput, "player_rotate")
+		#print(targetInput, "player_rotate")
 	if PlayerInput.target_is_action_pressed("player_down", targetInput):
 		final_fall_speed = fall_speed * 2
-		print(targetInput, "player_down")
+		#print(targetInput, "player_down")
 	if PlayerInput.target_is_action_just_pressed("player_action1", targetInput):
 		print(targetInput, "player_action1")
 	if PlayerInput.target_is_action_just_pressed("player_action2", targetInput):

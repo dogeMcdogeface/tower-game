@@ -41,3 +41,9 @@ func show_player_viewport(num):
 		else:
 			child.process_mode = Node.PROCESS_MODE_DISABLED
 			child.get_node("SubViewport/tower_builder").assignedPlayer = null
+
+
+func switch_to():
+	print("switching to game view")
+	GameDirector.start_game()
+	

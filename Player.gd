@@ -1,6 +1,8 @@
 class_name Player
 extends Resource
 
+# Static set to keep track of assigned color indexes
+static var assigned_color_indices := {}
 const colors: Array = [
 	Color(1, 0, 0),     # Red
 	Color(0, 1, 0),     # Green
@@ -19,6 +21,7 @@ const terms = [
 ]
 
 var ready = false
+var round_in_progress = false
 var game_in_progress = false
 
 
@@ -32,8 +35,7 @@ var name: String:
 	get:
 		return "%s %s" % [titles[titleIndex % titles.size()], terms[termIndex % terms.size()]]
 
-# Static set to keep track of assigned color indexes
-static var assigned_color_indices := {}
+
 var colorIndex: int:
 	get:
 		return _colorIndex

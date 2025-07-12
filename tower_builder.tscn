@@ -25,7 +25,7 @@ size = Vector2(500, 1000)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dlkxs"]
 size = Vector2(500, 50)
 
-[node name="tower_builder" type="Node2D"]
+[node name="tower_builder" type="Node2D" groups=["tower_builders"]]
 script = ExtResource("1_6fbt4")
 fall_speed = 280
 metadata/_edit_lock_ = true

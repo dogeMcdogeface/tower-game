@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=4 uid="uid://dpgnx8f3ofdob"]
+
+[ext_resource type="PackedScene" uid="uid://wtyl7mc3b3dh" path="res://blocks/block_O.tscn" id="1_8dijj"]
+[ext_resource type="PackedScene" uid="uid://cbamyfakjx63b" path="res://blocks/collision_shape_2d_block.tscn" id="2_k6l6c"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_k6l6c"]
+resource_local_to_scene = true
+size = Vector2(30, 10000)
+
+[node name="Block" instance=ExtResource("1_8dijj")]
+
+[node name="Trail" parent="." index="0"]
+mesh = SubResource("QuadMesh_k6l6c")
+
+[node name="TileMapLayer" parent="." index="1"]
+tile_map_data = PackedByteArray("AAAAAP//AgAGAAIAAAD/////AgAGAAIAAAAAAAAAAgAGAAIAAAD//wAAAgAGAAIAAAD+//7/AgADAAEAAAD///7/AgAEAAMAAAAAAP7/AgAEAAMAAAABAP7/AgADAAQAAAABAP//AgAFAAIAAAABAAAAAgAFAAIAAAD+////AgAEAAIAAAD+/wAAAgAEAAIAAAD+/wEAAgACAAUAAAD//wEAAgAFAAMAAAAAAAEAAgAFAAMAAAABAAEAAgADAAUAAAADAPr/AgAIAAAAAAACAPr/AgAEAAMAAAABAPr/AgAEAAQAAAAAAPr/AgACAAAAAAD///r/AgACAAAAAAD+//r/AgAFAAQAAAD9//r/AgAEAAMAAAD8//r/AgAHAAAAAAD8//v/AgAHAAEAAAD9//v/AgAFAAMAAAD+//v/AgADAAUAAAD+//z/AgACAAEAAAD+//3/AgACAAEAAAD+/wIAAgACAAEAAAD+/wMAAgACAAEAAAD+/wQAAgADAAQAAAD9/wQAAgAEAAMAAAD8/wQAAgAHAAAAAAD8/wUAAgAHAAEAAAD9/wUAAgAFAAMAAAD+/wUAAgAFAAUAAAD//wUAAgACAAAAAAAAAAUAAgACAAAAAAABAAUAAgAEAAUAAAACAAUAAgAFAAMAAAADAAUAAgAIAAEAAAADAAQAAgAIAAAAAAACAAQAAgAEAAMAAAABAAQAAgACAAQAAAABAAMAAgACAAEAAAABAAIAAgACAAEAAAABAP3/AgACAAEAAAABAPz/AgACAAEAAAABAPv/AgACAAUAAAACAPv/AgAFAAMAAAADAPv/AgAIAAEAAAA=")
+
+[node name="Collision_Block" parent="." index="5"]
+visible = true
+
+[node name="Collision_Block5" parent="." index="6" instance=ExtResource("2_k6l6c")]
+position = Vector2(16, 48)
+
+[node name="Collision_Block6" parent="." index="7" instance=ExtResource("2_k6l6c")]
+position = Vector2(-16, 48)
+
+[node name="Collision_Block7" parent="." index="8" instance=ExtResource("2_k6l6c")]
+position = Vector2(-16, 80)
+
+[node name="Collision_Block8" parent="." index="9" instance=ExtResource("2_k6l6c")]
+position = Vector2(16, 80)
+
+[node name="Collision_Block9" parent="." index="10" instance=ExtResource("2_k6l6c")]
+position = Vector2(16, -48)
+
+[node name="Collision_Block10" parent="." index="11" instance=ExtResource("2_k6l6c")]
+position = Vector2(-16, -48)
+
+[node name="Collision_Block11" parent="." index="12" instance=ExtResource("2_k6l6c")]
+position = Vector2(-16, -80)
+
+[node name="Collision_Block12" parent="." index="13" instance=ExtResource("2_k6l6c")]
+position = Vector2(16, -80)
+
+[node name="Collision_Block13" parent="." index="14" instance=ExtResource("2_k6l6c")]
+position = Vector2(48, -80)
+
+[node name="Collision_Block14" parent="." index="15" instance=ExtResource("2_k6l6c")]
+position = Vector2(48, 80)
+
+[node name="Collision_Block15" parent="." index="16" instance=ExtResource("2_k6l6c")]
+position = Vector2(-48, 80)
+
+[node name="Collision_Block16" parent="." index="17" instance=ExtResource("2_k6l6c")]
+position = Vector2(-48, -80)
