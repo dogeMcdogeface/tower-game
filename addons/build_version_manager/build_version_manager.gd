@@ -140,17 +140,30 @@ func get_readable_time(timestamp: int) -> String:
 
 # Friendly Name Generator
 const adjectives = [
-	"Brave", "Silent", "Crimson", "Witty", "Bright",
-	"Rapid", "Misty", "Clever", "Swift", "Frosty",
-	"Jolly", "Sharp", "Quiet", "Zesty", "Bold",
-	"Feisty", "Sunny", "Vivid", "Snappy", "Gleam"
+	"Brave", "Silent", "Crimson", "Witty", "Bright", "Rapid", "Misty", "Clever", "Swift", "Frosty",
+	"Jolly", "Sharp", "Quiet", "Zesty", "Bold", "Feisty", "Sunny", "Vivid", "Snappy", "Gleam",
+	"Sly", "Breezy", "Loyal", "Fierce", "Tough", "Slick", "Lively", "Zany", "Agile", "Happy",
+	"Smoky", "Nimble", "Fresh", "Dizzy", "Neat", "Chill", "Spicy", "Classy", "Rusty", "Nifty",
+	"Shiny", "Funky", "Grimy", "Lofty", "Stark", "Giddy", "Noble", "Snug", "Flaky", "Edgy",
+	"Cozy", "Rugged", "Wired", "Witty", "Zesty", "Bumpy", "Frisk", "Bland", "Flash", "Dank",
+	"Fuzzy", "Jumpy", "Proud", "Sassy", "Soggy", "Thick", "Weird", "Yummy", "Spiky", "Tidy",
+	"Faint", "Ghost", "Moody", "Hardy", "Stern", "Silly", "Breez", "Wavy", "Chunk", "Rigid",
+	"Dusty", "Sleek", "Rough", "Grizz", "Crude", "Beige", "Amber", "Lilac", "Peach", "Aqua",
+	"Coral", "Naked", "Hazel", "Ivory", "Jaded", "Khaki", "Mauve", "Olive", "Pale", "Royal"
 ]
 const nouns = [
-	"Falcon", "River", "Shadow", "Phoenix", "Mountain",
-	"Blaze", "Ridge", "Comet", "Storm", "Flame",
-	"Stone", "Glade", "Hawk", "Cloud", "Viper",
-	"Drake", "Spire", "Flint", "Grove", "Breeze"
+	"Falcon", "River", "Shadow", "Phoenix", "Mountain", "Blaze", "Ridge", "Comet", "Storm", "Flame",
+	"Stone", "Glade", "Hawk", "Cloud", "Viper", "Drake", "Spire", "Flint", "Grove", "Breeze",
+	"Frost", "Spark", "Moose", "Tiger", "Wolf", "Eagle", "Bison", "Crane", "Otter", "Whale",
+	"Shark", "Jaguar", "Lynx", "Cobra", "Orca", "Puma", "Bat", "Beetle", "Lark", "Fawn",
+	"Quail", "Snail", "Trout", "Squid", "Mouse", "Roach", "Swine", "Oxen", "Toad", "Aspen",
+	"Thorn", "Cedar", "Maple", "Birch", "Sands", "Reef", "Cove", "Tundra", "Oasis", "Delta",
+	"Valley", "Cliff", "Dunes", "Canyon", "Basin", "Marsh", "Jungle", "Forest", "Meadow", "Hollow",
+	"Nest", "Pond", "Peak", "Plain", "Range", "Shore", "Woods", "Field", "Crater", "Icecap",
+	"Bluff", "Islet", "Harbor", "Fjord", "Geyser", "Spray", "Glacier", "Mist", "Echo", "Ash",
+	"Ember", "Drift", "Dust", "Wave", "Tide", "Slope", "Burrow", "Gloom", "Cinder", "Talon"
 ]
+
 
 func _generate_friendly_name() -> String:
 	var used_names := versions.map(func(v): return v.get("friendly_name"))

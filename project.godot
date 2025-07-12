@@ -13,10 +13,10 @@ config_version=5
 config/name="tower game"
 config/version={
 "friendly_name": "GleamComet",
-"major": 0,
-"minor": 0,
+"major": 0.0,
+"minor": 0.0,
 "release_timestamp": 1.75228e+09,
-"sub": 8
+"sub": 8.0
 }
 run/main_scene="uid://cilcg2jxe23wn"
 config/features=PackedStringArray("4.4", "Mobile")

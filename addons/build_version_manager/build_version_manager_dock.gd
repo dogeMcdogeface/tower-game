@@ -58,7 +58,6 @@ func create_version_labels(version: Dictionary) -> Array:
 	var time_label := Label.new()
 	time_label.text = "%s" % readable_time
 	labels.append(time_label)
-
 	return labels
 
 func _format_time_now() -> String:

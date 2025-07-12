@@ -26,11 +26,11 @@ script = ExtResource("1_clnnl")
 
 [node name="view_tower_builder" parent="views" node_paths=PackedStringArray("ui_manager") instance=ExtResource("2_2xo1s")]
 process_mode = 4
+visible = false
 ui_manager = NodePath("../..")
 metadata/_edit_lock_ = true
 
 [node name="menu_main" parent="views" node_paths=PackedStringArray("ui_manager") instance=ExtResource("3_12hd6")]
-visible = false
 ui_manager = NodePath("../..")
 
 [node name="menu_settings" type="Control" parent="views"]
@@ -42,6 +42,7 @@ offset_bottom = 40.0
 metadata/_edit_lock_ = true
 
 [node name="menu_test_controllers" parent="views" node_paths=PackedStringArray("ui_manager") instance=ExtResource("4_h5nok")]
+visible = false
 ui_manager = NodePath("../..")
 metadata/_edit_lock_ = true
 

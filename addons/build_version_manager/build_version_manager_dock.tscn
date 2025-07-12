@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bbobxmvyf64g8" path="res://addons/build_version_manager/build_version_manager_dock.gd" id="1_jlsrw"]
 
-[node name="BuildVersionManagerDock" type="MarginContainer"]
+[node name="VersionManager" type="MarginContainer"]
 offset_right = 202.0
 offset_bottom = 301.0
 script = ExtResource("1_jlsrw")
