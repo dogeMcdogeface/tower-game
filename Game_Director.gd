@@ -24,7 +24,7 @@ var block_pools := {
 }
 
 var current_block_pool = "easy"
-var current_block_list_length = 50
+var current_block_list_length = 500
 var current_block_list = []
 
 

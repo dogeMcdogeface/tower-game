@@ -69,6 +69,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_add_player"):
 		debug_add_dummy_player()
 	if event.is_action_pressed("debug_warpspeed"):
-		Engine.time_scale = 5
+		Engine.time_scale = 20
 	if event.is_action_released("debug_warpspeed"):
 		Engine.time_scale = 1

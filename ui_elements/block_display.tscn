@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://n3as7h18wn8w"]
+
+[ext_resource type="Script" uid="uid://cm41g4bhgo0l4" path="res://ui_elements/block_display.gd" id="1_pokxs"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_pokxs"]
+viewport_path = NodePath("SubViewport")
+
+[node name="block_display" type="TextureRect"]
+custom_minimum_size = Vector2(50, 50)
+texture = SubResource("ViewportTexture_pokxs")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("1_pokxs")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+
+[node name="Camera2D" type="Camera2D" parent="SubViewport"]
+ignore_rotation = false

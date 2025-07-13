@@ -1,16 +1,16 @@
 class_name TowerBuilder extends Node2D
 
-var _assigned_player: Player
+#var _assigned_player: Player
 var target_input = -1
 var assigned_player: Player:
 	set(value):
-		_assigned_player = value
+		assigned_player = value
 		if value:
 			target_input = value.target_input
 		else:
 			target_input = null
 	get:
-		return _assigned_player
+		return assigned_player
 
 
 

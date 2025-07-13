@@ -51,19 +51,19 @@ metadata/_edit_lock_ = true
 [node name="GridContainer_player_icons" parent="overlays" instance=ExtResource("5_lky65")]
 
 [node name="Label_version" type="Label" parent="overlays"]
-offset_left = 30.0
-offset_top = 5.0
-offset_right = 157.0
-offset_bottom = 28.0
+offset_left = 13.0
+offset_top = 1000.0
+offset_right = 140.0
+offset_bottom = 1023.0
 text = "Version: 000.000"
 label_settings = SubResource("LabelSettings_kk8bv")
 script = ExtResource("7_aolcw")
 
 [node name="ColorRect" type="ColorRect" parent="overlays"]
-offset_left = 30.0
-offset_top = 29.0
-offset_right = 147.0
-offset_bottom = 82.0
+offset_left = 13.0
+offset_top = 1024.0
+offset_right = 130.0
+offset_bottom = 1077.0
 color = Color(0, 0, 0, 0.172549)
 
 [node name="Label_fps" type="Label" parent="overlays/ColorRect"]

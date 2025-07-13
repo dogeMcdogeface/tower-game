@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://bgtt6psvobs7s"]
 
 [ext_resource type="Script" uid="uid://uyth7v848ih0" path="res://tower_builder.gd" id="1_6fbt4"]
-[ext_resource type="Texture2D" uid="uid://h2687wdrdaeb" path="res://Untitled.png" id="1_hdix6"]
+[ext_resource type="Texture2D" uid="uid://h2687wdrdaeb" path="res://assets/Untitled.png" id="1_hdix6"]
 [ext_resource type="Script" uid="uid://bp20a2goidagv" path="res://debug_grid.gd" id="3_6fbt4"]
 [ext_resource type="PackedScene" uid="uid://c56uiv3f0vbhs" path="res://blocks/static_block.tscn" id="3_dlkxs"]
 
