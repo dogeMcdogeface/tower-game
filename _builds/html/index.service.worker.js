@@ -4,7 +4,7 @@
 // Incrementing CACHE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
 /** @type {string} */
-const CACHE_VERSION = '1752279303|142429668';
+const CACHE_VERSION = '1752376024|7678381224';
 /** @type {string} */
 const CACHE_PREFIX = 'tower game-sw-cache-';
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;
