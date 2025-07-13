@@ -27,13 +27,28 @@ func _process(delta: float) -> void:
 	Label_count.text = str(assigned_tower_builder.block_list.size())
 
 	if(last_block_list_size != assigned_tower_builder.block_list.size()):
+		last_block_list_size = assigned_tower_builder.block_list.size()
 		animate_icons()
 
 
 func animate_icons():
-	print(scroll_container)
-	print("updating icons")
-	last_block_list_size = assigned_tower_builder.block_list.size()
+	# Animate scroll from current to second element
+	if icons.size() >= 2:
+		var from_scroll = icons[0].position.y
+		var to_scroll = icons[1].position.y 
+		var tween := get_tree().create_tween()
+		tween.tween_property(
+			scroll_container,
+			"scroll_vertical", 
+			to_scroll,
+			0.5
+			).from(from_scroll).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+
+		# Wait for the tween to finish
+		await tween.finished
+		scroll_container.scroll_vertical = 0
+
+	# Update icon previews
 	for i in icons.size():
 		var block_index := -1 * (i + 1)
 		var block = null
@@ -41,7 +56,8 @@ func animate_icons():
 			block = assigned_tower_builder.block_list[block_index]
 		icons[i].set_preview(block)
 
-
+		
+		
 func get_tower_builder_for_player():
 	for tb in get_tree().get_nodes_in_group("tower_builders"):
 		if tb.assigned_player == assigned_player:

@@ -24,7 +24,7 @@ script = ExtResource("1_a3qfh")
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 offset_right = 145.0
-offset_bottom = 200.0
+offset_bottom = 180.0
 
 [node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer"]
 layout_mode = 2
