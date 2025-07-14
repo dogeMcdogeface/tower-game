@@ -25,23 +25,71 @@ func _player_data_updated():
 	else:
 		show_player_viewport(playerNum)
 
+var max_rows:int = 4
 func show_player_viewport(num):
 	var children = $GridContainer.get_children()
 	var player_list = PlayerData.players.values()
+
+	var rows = 1
+	if num <= max_rows:
+		$GridContainer.columns = num
+	else:
+		$GridContainer.columns = ceil( num / 2.0)
+		rows = num /  (num / 2.0)
+	print(num, "using rows ", $GridContainer.columns, " rows ",rows)
+
 	
 	for i in children.size():
-		var child = children[i]
+		var child:TextureRect = children[i]
 
 		child.visible = i < num
 		
+		var s = get_viewport_rect().size
+		s.x /= $GridContainer.columns
+		s.y /= rows
+		
+
+
+			
 		if i < player_list.size():
 			child.process_mode = Node.PROCESS_MODE_INHERIT
 			child.propagate_call("set", ["assigned_player", player_list[i]])
+			
+
+			if rows == 1 and s.x > s.y:
+				print("mode 1")
+				child.expand_mode = TextureRect.EXPAND_FIT_WIDTH
+				child.stretch_mode = TextureRect.STRETCH_KEEP_CENTERED
+			elif rows == 1 and s.x <= s.y:
+				print("mode 2")
+				child.expand_mode = TextureRect.EXPAND_FIT_HEIGHT
+				child.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+			elif rows == 2 and s.x > s.y:
+				print("mode 3")
+				child.expand_mode = TextureRect.EXPAND_FIT_WIDTH
+				child.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+			elif rows == 2 and s.x <= s.y:
+				print("mode 4")
+				child.expand_mode = TextureRect.EXPAND_FIT_HEIGHT
+				child.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+			else:
+				print("Error generating view_tower_builder layout")
+
+			
+			print("Container size ", s, " ", child.expand_mode, " ", child.stretch_mode)
+			print(num, "using rows ", $GridContainer.columns, " rows ",rows)
+
+
+
+
+
+
 		else:
 			child.process_mode = Node.PROCESS_MODE_DISABLED
 			child.propagate_call("set", ["assigned_player", null])
-			
-	$GridContainer.columns = num
+	
+
+		
 
 
 func switch_to():

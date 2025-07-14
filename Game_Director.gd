@@ -69,7 +69,7 @@ signal _on_game_finish
 func start_game():
 	print("Game director starting")
 	game_active = true
-	start_round()
+	#start_round()
 
 
 

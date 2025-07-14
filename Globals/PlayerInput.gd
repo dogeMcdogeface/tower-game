@@ -1,6 +1,6 @@
 extends Node
 
-const MAX_DEVICES = 6
+const MAX_DEVICES = 9
 var DEVICE_KEYBOARD_ID
 
 

@@ -154,7 +154,7 @@ metadata/_edit_lock_ = true
 [node name="DebugGrid" type="Node2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.27451)
 script = ExtResource("3_6fbt4")
-grid_half_extents = Vector2(500, 50000)
+grid_half_extents = Vector2(50000, 50000)
 grid_thickness = 2.0
 metadata/_edit_lock_ = true
 
