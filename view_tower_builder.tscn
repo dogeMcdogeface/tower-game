@@ -31,20 +31,22 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-columns = 4
 
 [node name="Viewport_Tower_Builder" parent="GridContainer" instance=ExtResource("1_dsvxy")]
 layout_mode = 2
 texture = SubResource("ViewportTexture_dsvxy")
 
 [node name="Viewport_Tower_Builder2" parent="GridContainer" instance=ExtResource("1_dsvxy")]
+visible = false
 layout_mode = 2
 texture = SubResource("ViewportTexture_dk36c")
 
 [node name="Viewport_Tower_Builder3" parent="GridContainer" instance=ExtResource("1_dsvxy")]
+visible = false
 layout_mode = 2
 texture = SubResource("ViewportTexture_hm2mt")
 
 [node name="Viewport_Tower_Builder4" parent="GridContainer" instance=ExtResource("1_dsvxy")]
+visible = false
 layout_mode = 2
 texture = SubResource("ViewportTexture_bbmbd")

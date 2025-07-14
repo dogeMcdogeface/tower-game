@@ -26,7 +26,6 @@ func _player_data_updated():
 		show_player_viewport(playerNum)
 
 func show_player_viewport(num):
-	$GridContainer.columns = num
 	var children = $GridContainer.get_children()
 	var player_list = PlayerData.players.values()
 	
@@ -41,6 +40,8 @@ func show_player_viewport(num):
 		else:
 			child.process_mode = Node.PROCESS_MODE_DISABLED
 			child.propagate_call("set", ["assigned_player", null])
+			
+	$GridContainer.columns = num
 
 
 func switch_to():

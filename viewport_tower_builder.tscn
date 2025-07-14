@@ -7,10 +7,11 @@
 viewport_path = NodePath("SubViewport")
 
 [node name="Viewport_Tower_Builder" type="TextureRect"]
+clip_contents = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = SubResource("ViewportTexture_dk36c")
-expand_mode = 3
+expand_mode = 1
 stretch_mode = 5
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

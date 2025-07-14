@@ -20,6 +20,7 @@ var active_block:RigidBody2D = null
 @export var fall_speed = 10
 
 var tower_aabb:Rect2
+var level_aabb:Rect2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void: 
@@ -39,20 +40,38 @@ func _process(delta: float) -> void:
 		active_block = null
 	#else
 		#control_block()
-	if(Engine.get_frames_drawn() % 10 == 0):
-		update_tower_aabb()
+	#if(Engine.get_frames_drawn() % 10 == 0):
+	update_tower_aabb()
 	
 	update_camera()
 
 
 func update_tower_aabb():
-	var tower_aabb := get_combined_aabb()
+	tower_aabb = get_combined_aabb()
 	$tower_aabb.position = tower_aabb.get_center()
 	$tower_aabb.scale.x = tower_aabb.size.x/100
 	$tower_aabb.scale.y = tower_aabb.size.y/100
 
+	var min_bounds:Rect2 = $min_aabb/CollisionShape2D.shape.get_rect()
+	var max_x = min(min_bounds.position.x, tower_aabb.position.x)
+	var max_y = min(min_bounds.get_center().y, tower_aabb.position.y)
+
+	level_aabb.position.x = max_x
+	level_aabb.position.y = max_y
+	
+	$block_spawner.global_position.y = max_y - min_bounds.size.y /2
+	$Camera2D.global_position.y =min( min_bounds.get_center().y, tower_aabb.position.y)
+	$debug_view_rect.position.y =min( min_bounds.get_center().y, tower_aabb.position.y)
+	$debug_view_rect.scale.x = 0.01 * get_viewport_rect().size.x
+	$debug_view_rect.scale.y = 0.01 * get_viewport_rect().size.y
+
+
 func update_camera():
-	$Camera2D
+	pass
+	#print(level_aabb, $Camera2D.get_viewport().get_visible_rect())
+	
+
+	#	$Camera2D.position.y = min()
 
 func spawn_block():
 	if block_list.is_empty():
@@ -60,6 +79,7 @@ func spawn_block():
 		return
 	var res = block_list.pop_back()
 	var block:Block = res.instantiate()
+	update_tower_aabb()
 	block.global_position = $block_spawner.global_position
 	block.assigned_player = assigned_player
 	blockNode.add_child(block)

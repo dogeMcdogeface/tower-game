@@ -1,9 +1,17 @@
-[gd_scene load_steps=14 format=3 uid="uid://bgtt6psvobs7s"]
+[gd_scene load_steps=17 format=3 uid="uid://bgtt6psvobs7s"]
 
 [ext_resource type="Script" uid="uid://uyth7v848ih0" path="res://tower_builder.gd" id="1_6fbt4"]
 [ext_resource type="Texture2D" uid="uid://h2687wdrdaeb" path="res://assets/Untitled.png" id="1_hdix6"]
 [ext_resource type="Script" uid="uid://bp20a2goidagv" path="res://debug_grid.gd" id="3_6fbt4"]
 [ext_resource type="PackedScene" uid="uid://c56uiv3f0vbhs" path="res://blocks/static_block.tscn" id="3_dlkxs"]
+
+[sub_resource type="Gradient" id="Gradient_v3i3v"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 0, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_de8qe"]
+gradient = SubResource("Gradient_v3i3v")
+width = 10
+height = 10
 
 [sub_resource type="QuadMesh" id="QuadMesh_oj04g"]
 size = Vector2(500, 1000)
@@ -29,6 +37,8 @@ size = Vector2(500, 1000)
 size = Vector2(500, 50)
 
 [sub_resource type="Gradient" id="Gradient_7uoja"]
+offsets = PackedFloat32Array(0, 0.916667, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_v3i3v"]
 gradient = SubResource("Gradient_7uoja")
@@ -38,15 +48,27 @@ fill = 2
 fill_from = Vector2(0.504274, 0.491453)
 fill_to = Vector2(1, 0.995726)
 
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dlkxs"]
+gradient = SubResource("Gradient_7uoja")
+width = 100
+height = 100
+fill = 2
+fill_from = Vector2(0.504274, 0.491453)
+fill_to = Vector2(0, 0)
+
 [node name="tower_builder" type="Node2D" groups=["tower_builders"]]
 script = ExtResource("1_6fbt4")
 fall_speed = 280
 metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
 
 [node name="block_spawner" type="Node2D" parent="."]
-position = Vector2(0, -608)
+position = Vector2(-1, -608)
+
+[node name="Sprite2D" type="Sprite2D" parent="block_spawner"]
+texture = SubResource("GradientTexture2D_de8qe")
 
 [node name="Textures" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
@@ -72,7 +94,7 @@ metadata/_edit_lock_ = true
 metadata/WorldBorder = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidTerrain/WorldBorder"]
-position = Vector2(0, 34)
+position = Vector2(-1, 34)
 shape = SubResource("WorldBoundaryShape2D_dlkxs")
 
 [node name="Starter" type="Node2D" parent="RigidTerrain"]
@@ -80,38 +102,39 @@ position = Vector2(0, 450)
 metadata/_edit_lock_ = true
 
 [node name="Block" parent="RigidTerrain/Starter" instance=ExtResource("3_dlkxs")]
-position = Vector2(-32, 2.06)
+position = Vector2(-33, 2.06)
 
 [node name="Block2" parent="RigidTerrain/Starter" instance=ExtResource("3_dlkxs")]
-position = Vector2(32, 2.06)
+position = Vector2(31, 2.06)
 
 [node name="Block3" parent="RigidTerrain/Starter" instance=ExtResource("3_dlkxs")]
-position = Vector2(32, 34.06)
+position = Vector2(31, 34.06)
 
 [node name="Block4" parent="RigidTerrain/Starter" instance=ExtResource("3_dlkxs")]
-position = Vector2(0, 34.06)
+position = Vector2(-1, 34.06)
 
 [node name="Block5" parent="RigidTerrain/Starter" instance=ExtResource("3_dlkxs")]
-position = Vector2(-32, 34.06)
+position = Vector2(-33, 34.06)
 
 [node name="Block6" parent="RigidTerrain/Starter" instance=ExtResource("3_dlkxs")]
-position = Vector2(-64, 34.06)
+position = Vector2(-65, 34.06)
 
 [node name="Block7" parent="RigidTerrain/Starter" instance=ExtResource("3_dlkxs")]
-position = Vector2(-64, 2.06)
+position = Vector2(-65, 2.06)
 
 [node name="Area2D_air" type="Area2D" parent="."]
+visible = false
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_air"]
 shape = SubResource("RectangleShape2D_hdix6")
 metadata/_edit_lock_ = true
 
-[node name="Area2D_min_aabb" type="Area2D" parent="."]
+[node name="min_aabb" type="Area2D" parent="."]
 visible = false
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D_min_aabb"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="min_aabb"]
 shape = SubResource("RectangleShape2D_7uoja")
 metadata/_edit_lock_ = true
 
@@ -131,8 +154,16 @@ metadata/_edit_lock_ = true
 [node name="DebugGrid" type="Node2D" parent="."]
 self_modulate = Color(1, 1, 1, 0.27451)
 script = ExtResource("3_6fbt4")
+grid_half_extents = Vector2(500, 50000)
+grid_thickness = 2.0
 metadata/_edit_lock_ = true
 
 [node name="tower_aabb" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.388235)
 texture = SubResource("GradientTexture2D_v3i3v")
+
+[node name="debug_view_rect" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.388235)
+position = Vector2(-1, 0)
+texture = SubResource("GradientTexture2D_dlkxs")

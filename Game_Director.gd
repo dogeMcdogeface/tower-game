@@ -20,10 +20,15 @@ var block_pools := {
 	],
 	"debugO": [
 		preload("res://blocks/block_O_mega.tscn"),
+	],
+	"debug1": [
+		preload("res://blocks/block_O.tscn"),
+		preload("res://blocks/block_I.tscn"),
 	]
 }
 
-var current_block_pool = "easy"
+var current_block_pool = "debug1"
+#var current_block_pool = "easy"
 var current_block_list_length = 500
 var current_block_list = []
 
