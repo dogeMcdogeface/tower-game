@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 func _player_data_updated():
 	var playerNum =  PlayerData.get_active_players_num()
 	if playerNum == 0:
-		print("No players??")
+		print("No players")
 	else:
 		show_player_viewport(playerNum)
 

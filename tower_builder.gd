@@ -19,6 +19,8 @@ var round_active = true
 var active_block:RigidBody2D = null
 @export var fall_speed = 10
 
+var tower_aabb:Rect2
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void: 
 	pass
@@ -37,11 +39,20 @@ func _process(delta: float) -> void:
 		active_block = null
 	#else
 		#control_block()
-	pass
+	if(Engine.get_frames_drawn() % 10 == 0):
+		update_tower_aabb()
+	
+	update_camera()
 
 
+func update_tower_aabb():
+	var tower_aabb := get_combined_aabb()
+	$tower_aabb.position = tower_aabb.get_center()
+	$tower_aabb.scale.x = tower_aabb.size.x/100
+	$tower_aabb.scale.y = tower_aabb.size.y/100
 
-
+func update_camera():
+	$Camera2D
 
 func spawn_block():
 	if block_list.is_empty():
@@ -49,6 +60,7 @@ func spawn_block():
 		return
 	var res = block_list.pop_back()
 	var block:Block = res.instantiate()
+	block.global_position = $block_spawner.global_position
 	block.assigned_player = assigned_player
 	blockNode.add_child(block)
 	return block
@@ -128,3 +140,20 @@ func _physics_process(delta):
 
 	# Constant falling
 	active_block.set_axis_velocity(Vector2.DOWN * final_fall_speed )
+
+
+
+func get_combined_aabb() -> Rect2:
+	var aabb: Rect2
+	var first_shape := true
+
+	for child in $Blocks.get_children():
+		if child is Block and not child.is_controlled:
+			var shape_aabb = child.get_combined_aabb()
+			# Transform the shape AABB to global position
+			if first_shape:
+				aabb = shape_aabb
+				first_shape = false
+			else:
+				aabb = aabb.merge(shape_aabb)
+	return aabb

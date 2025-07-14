@@ -63,11 +63,16 @@ func get_next_available_target_input() -> int:
 	
 	return i
 
-	
+func get_gaming():
+	if PlayerData.players.size() == 0:
+		PlayerData.register_player(PlayerInput.DEVICE_KEYBOARD_ID)
+		get_tree().current_scene.fsm_apply_transition("_on_button_play_pressed_with_players")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_add_player"):
 		debug_add_dummy_player()
+	if event.is_action_pressed("debug_get_gaming"):
+		get_gaming()
 	if event.is_action_pressed("debug_warpspeed"):
 		Engine.time_scale = 20
 	if event.is_action_released("debug_warpspeed"):

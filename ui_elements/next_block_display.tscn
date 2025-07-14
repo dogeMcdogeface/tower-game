@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ce6wq0tge70jl"]
+[gd_scene load_steps=9 format=3 uid="uid://ce6wq0tge70jl"]
 
 [ext_resource type="Script" uid="uid://b8ynkmj48l3ix" path="res://ui_elements/next_block_display.gd" id="1_a3qfh"]
 [ext_resource type="Texture2D" uid="uid://jqb6tdjea1op" path="res://assets/Blueprint-background.png" id="2_jsvhj"]
@@ -14,6 +14,9 @@ viewport_path = NodePath("SubViewport")
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_bmolv"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_a3qfh"]
 viewport_path = NodePath("SubViewport")
 
 [node name="Next_Block_Display" type="Control"]
@@ -78,7 +81,7 @@ texture = SubResource("ViewportTexture_bmolv")
 
 [node name="block_display5" parent="MarginContainer/Control/ScrollContainer/VBoxContainer" instance=ExtResource("3_bf0wq")]
 layout_mode = 2
-texture = SubResource("ViewportTexture_bmolv")
+texture = SubResource("ViewportTexture_a3qfh")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2

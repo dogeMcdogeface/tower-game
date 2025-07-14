@@ -64,5 +64,4 @@ func get_combined_aabb() -> Rect2:
 					first_shape = false
 				else:
 					aabb = aabb.merge(shape_aabb)
-
 	return aabb
