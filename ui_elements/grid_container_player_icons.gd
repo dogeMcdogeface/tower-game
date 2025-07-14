@@ -20,14 +20,11 @@ func _process(delta: float) -> void:
 
 func _player_data_updated():
 	var playerNum =  PlayerData.get_active_players_num()
-	if playerNum == 0:
-		show_player_icon(PlayerData.MAX_PLAYERS)
-	else:
-		show_player_icon(playerNum)
+	show_player_icon(playerNum)
 		
 
 func show_player_icon(num):
-	columns = num
+	columns = max(1, num)
 	var children = get_children()
 	var player_list = PlayerData.players.values()
 	
