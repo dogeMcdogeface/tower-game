@@ -27,8 +27,8 @@ var block_pools := {
 	]
 }
 
-var current_block_pool = "debug1"
-#var current_block_pool = "easy"
+#var current_block_pool = "debug1"
+var current_block_pool = "easy"
 var current_block_list_length = 500
 var current_block_list = []
 
@@ -69,7 +69,7 @@ signal _on_game_finish
 func start_game():
 	print("Game director starting")
 	game_active = true
-	#start_round()
+	start_round()
 
 
 

@@ -1,11 +1,12 @@
 extends Menu
 
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#print("Children size ", get_children().size() )
 	while $GridContainer.get_children().size() < PlayerData.MAX_PLAYERS:
-		var newViewport = $GridContainer/Viewport_Tower_Builder.duplicate()
+		var newViewport =preload("res://viewport_tower_builder.tscn").instantiate()
 		$GridContainer.add_child(newViewport)
 		push_warning("Using more players than intended. If something breaks look here (view_tower_builder)")
 	#print("Children size ", get_children().size() )

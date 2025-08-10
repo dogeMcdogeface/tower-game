@@ -11,8 +11,8 @@ clip_contents = true
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = SubResource("ViewportTexture_dk36c")
-expand_mode = 4
-stretch_mode = 6
+expand_mode = 2
+stretch_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -28,6 +28,6 @@ layout_mode = 2
 [node name="SubViewport" type="SubViewport" parent="."]
 disable_3d = true
 transparent_bg = true
-size = Vector2i(1335, 1000)
+size = Vector2i(1000, 1000)
 
 [node name="tower_builder" parent="SubViewport" instance=ExtResource("1_64jmk")]

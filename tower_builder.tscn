@@ -65,10 +65,11 @@ metadata/_edit_lock_ = true
 position_smoothing_enabled = true
 
 [node name="block_spawner" type="Node2D" parent="."]
-position = Vector2(-1, -608)
+position = Vector2(-16, -1952)
 
 [node name="Sprite2D" type="Sprite2D" parent="block_spawner"]
 texture = SubResource("GradientTexture2D_de8qe")
+metadata/_edit_lock_ = true
 
 [node name="Textures" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
@@ -164,6 +165,7 @@ modulate = Color(1, 1, 1, 0.388235)
 texture = SubResource("GradientTexture2D_v3i3v")
 
 [node name="debug_view_rect" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.388235)
 position = Vector2(-1, 0)
 texture = SubResource("GradientTexture2D_dlkxs")

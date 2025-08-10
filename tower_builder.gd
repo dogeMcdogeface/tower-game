@@ -60,10 +60,16 @@ func update_tower_aabb():
 	level_aabb.position.y = max_y
 	
 	$block_spawner.global_position.y = max_y - min_bounds.size.y /2
-	$Camera2D.global_position.y =min( min_bounds.get_center().y, tower_aabb.position.y)
+	var camera_y = min( min_bounds.get_center().y, tower_aabb.position.y)
+	if active_block:
+		camera_y = min(camera_y, active_block.position.y+ get_viewport_rect().size.y /2)
+	$Camera2D.global_position.y = camera_y 
 	$debug_view_rect.position.y =min( min_bounds.get_center().y, tower_aabb.position.y)
 	$debug_view_rect.scale.x = 0.01 * get_viewport_rect().size.x
 	$debug_view_rect.scale.y = 0.01 * get_viewport_rect().size.y
+	
+	get_viewport().size.y = max(get_parent().get_parent().size.y, min_bounds.size.y)
+	get_viewport().size.x = max(get_parent().get_parent().size.x, min_bounds.size.x)
 
 
 func update_camera():
